@@ -50,12 +50,25 @@
                 <small>Cart</small>
               </a>
             </li>
+            @auth
             <li class="nav-item">
-              <a class="nav-link" href="./login.html">Login</a>
+              <a class="nav-link" href="{{url('/admin/dashboard')}}">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./register.html">Register</a>
+              <form action="{{url('/logout')}}" method="post">
+                @csrf
+                <button type="submit" class="btn  nav-link">Logout</button>
+              </form>
             </li>
+            @endauth
+            @guest
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('/login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('/register')}}">Register</a>
+            </li>
+            @endguest
             <li class="nav-item">
               <a href="./cart.html" class="nav-link d-md-block d-lg-none" title="keranjang belanja"><i class="bi bi-basket"></i> <small>Cart</small></a>
             </li>

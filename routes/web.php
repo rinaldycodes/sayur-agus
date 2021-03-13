@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,11 @@ use App\Http\Controllers\CartController;
 Route::get('/', [PageController::class, 'home']);
 Route::get('/product', [PageController::class, 'product']);
 Route::get('/product/{slug}', [PageController::class, 'detail_product']);
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/auth', [LoginController::class, 'processLogin']);
+Route::get('/register', [LoginController::class, 'register']);
+Route::post('/process-register', [LoginController::class, 'processRegister']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // CART CONTROLLER
 Route::post('/add-item/{slug}', [CartController::class, 'add_item']);
@@ -37,6 +43,7 @@ Route::get('/destroy-cart/{rowId}', [CartController::class, 'destroy']);
 Route::get('/shipping', [CartController::class, 'shipping']);
 
 
+// ADMIN AREA
 Route::get('/admin', [DashboardAdminController::class, 'index']);
 
 Route::resource('admin/products', ProductController::class);
