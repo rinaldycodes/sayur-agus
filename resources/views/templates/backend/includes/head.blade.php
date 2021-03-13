@@ -17,3 +17,4 @@
 
 <!-- Custom styles for this template-->
 <link href="{{URL::to('backend/sb-admin-2')}}/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="{{URL::to('backend/style.css')}}" rel="stylesheet">

@@ -93,16 +93,6 @@
                                 </select>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="align-middle" colspan="2">
-                            <p class="mt-2">Agus Irawan<br>
-                                BANK KEDAUNG<br>
-                            </p>
-                            </td>
-                            <td class="align-middle text-end">
-                            <b>123789123</b>
-                            </td>
-                        </tr>
                     </table>
                 </div>
                 </div>

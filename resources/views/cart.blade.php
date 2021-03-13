@@ -53,7 +53,7 @@
             <!-- DESKTOP -->
             <div class="row d-md-flex">
                 <div class="col">
-                <a href="./product.html" class="btn btn-sm btn-outline-success">ADD MORE</a>
+                <a href="{{ url('/product')}}" class="btn btn-sm btn-outline-success">ADD MORE</a>
                 </div>
                 <div class="col text-end">
                 <a href="{{ url('/shipping')}}" class="text-end btn btn-sm btn-success"> <i class="bi bi-truck"></i> SHIPPING</a>

@@ -4,8 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use File;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class GalleryController extends Controller
@@ -23,15 +27,9 @@ class GalleryController extends Controller
         return view('admin.galleries.index', compact('galleries'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create($slug)
     {
-
-        return view('admin.galleries.create');
+        //
     }
 
     public function store(Request $request)
@@ -45,78 +43,41 @@ class GalleryController extends Controller
 
         // VALIDATE FORM
         $validated = $request->validate([
-            'name' => 'required|unique:galleries|max:255',
-            'price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'description' => 'required',
+            'img' => 'required',
+
         ], $messages);
 
         //STORE DATA TO DATABASE
         $gallery = new gallery;
-        $gallery->name = $request->name;
+        $gallery->img = $request->file('img')->store('images', 'public'
+            
+        );
+        $gallery->product_id = $request->product_id;
 
-        // SLUG
-        $slug = Str::of($request->name)->slug('-');
-        $gallery->slug = $slug;
-
-        // REPLACE . INTO NONECHARACTER
-        $price = str_replace('.','', $request->price);
-        $gallery->price = $price;
-
-        $gallery->stock = $request->stock;
-        $gallery->category_id = $request->category_id;
-        $gallery->description = $request->description;
         $gallery->save();
 
-        return redirect()->route('galleries.index')->with('message', 'Berhasil Menyimpan Data!');
+        return back()->with('message', 'Berhasil Menyimpan Data!');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $product = Product::where('slug', $slug)->firstOrFail();
+        $galleries = Gallery::where('product_id', $product->id)->get();
+        return view('admin.galleries.show', compact(
+            'product', 'galleries',
+        ));
     }
 
  
     public function edit($slug)
     {
-        $gallery = Gallery::where('slug', $slug)->firstOrFail();
-
-        return view('admin.galleries.edit', compact('gallery'));
+        //
     }
 
   
     public function update(Request $request, $slug)
     {
-        $messages = [
-            'required' => 'Wajib di isi',
-            'unique' => 'Data yang dimasukan sudah ada',
-        ];
-        
-        $validated = $request->validate([
-            'name' => 'required|unique:galleries|max:255',
-            'price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'description' => 'required',
-        ], $messages);
-
-        //store
-        $gallery = Gallery::where('slug', $slug)->firstOrFail();
-        $gallery->name = $request->name;
-
-        $slug = Str::of($request->name)->slug('-');
-        $gallery->slug = $slug;
-
-        $price = str_replace('.','', $request->price);
-        $gallery->price = $price;
-
-        $gallery->stock = $request->stock;
-        $gallery->category_id = $request->category_id;
-        $gallery->description = $request->description;
-        $gallery->save();
-
-        return redirect()->route('galleries.index')->with('message', 'Berhasil Update Data!');
+        //
     }
 
     public function destroy($id)
@@ -125,5 +86,17 @@ class GalleryController extends Controller
         $gallery->delete();
 
         return redirect()->route('galleries.index')->with('message', 'Berhasil Menghapus Data');
+    }
+
+    public function delete($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        $value = str_replace('images/', '', $gallery->img);
+
+        Storage::disk('public')->delete($gallery->img);
+        
+        $gallery->delete();
+
+        return back()->with('message', 'Berhasil Menghapus Foto');
     }
 }

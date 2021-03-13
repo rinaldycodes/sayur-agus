@@ -10,6 +10,10 @@ class Product extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name', 'slug', 'price', 'stock', 'category_id', 'description'
+        'name', 'slug', 'price', 'stock', 'category', 'description'
     ];
+
+    public function galleries(){
+        return $this->hasMany(Gallery::class, 'product_id', 'id');
+    }
 }

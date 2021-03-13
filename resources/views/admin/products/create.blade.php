@@ -54,19 +54,21 @@
                     <div class="form-group">
                         <label for="category">Kategori</label>
                         <select 
-                            name="category_id" 
+                            name="category" 
                             class="form-control @error('stock') is-invalid @enderror"
                         >
                             <option value="">-=Pilih=-</option>
-                            <option value="1">Sayuran</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->name}}">{{$category->name}}</option>
+                            @endforeach
                         </select>
-                        @error('category_id')
+                        @error('category')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea name="description" id="description" cols="15" rows="5" class="form-control @error('stock') is-invalid @enderror">{{ old('stock') }}</textarea>
+                        <textarea name="description" id="description" cols="15" rows="5" class="form-control @error('stock') is-invalid @enderror">{{ old('description') }}</textarea>
                       
                         @error('description')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -74,7 +76,7 @@
                     </div>
 
                     <div class="form-group">
-                        <a href="#" class="btn btn-secondary">Batal</a>
+                        <a href="{{url()->previous()}}" class="btn btn-secondary">Batal</a>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </form>

@@ -7,7 +7,12 @@
 <main class="form-signin">
 <div class="container">
     <div class="row justify-content-center ">
+    
         <div class="col-sm-4">
+        @if (session('message'))
+            <div class="alert alert-info text-dark">{{ session('message') }}</div>
+        @endif
+
             <form action="{{url('/auth')}}" method="post" class="card card-body shadow p-5">
             @csrf
                 <div class="header mb-5">

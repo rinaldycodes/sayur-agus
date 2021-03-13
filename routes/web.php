@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\DashboardAdminController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\GalleryController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 
@@ -44,8 +45,16 @@ Route::get('/shipping', [CartController::class, 'shipping']);
 
 
 // ADMIN AREA
-Route::get('/admin', [DashboardAdminController::class, 'index']);
+Route::prefix('admin')
+    ->middleware('admin')
+    ->group( function() {
+    Route::get('/', [DashboardAdminController::class, 'index']);
+    Route::resource('/products', ProductController::class);
+    Route::resource('/transactions', TransactionController::class);
+    Route::get('/galleries/delete/{id}', [GalleryController::class, 'delete']);
+    Route::resource('/galleries', GalleryController::class);
+    Route::resource('/categories', CategoryController::class);
+});
 
-Route::resource('admin/products', ProductController::class);
-Route::resource('admin/transactions', TransactionController::class);
-Route::resource('admin/galleries', GalleryController::class);
+
+

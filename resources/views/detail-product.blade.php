@@ -25,7 +25,7 @@
 
     <div class="container">
     <div class="row">
-        <div class="col-md-6 mb-5">
+        <div class="col-md-6 mb-5 card">
             <!-- Carousel -->
             <div id="carouselProduct" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -34,15 +34,11 @@
                 <button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://source.unsplash.com/daily" class="d-block w-100" alt="Online Shop" />
-                </div>
-                <div class="carousel-item">
-                    <img src="https://source.unsplash.com/daily" class="d-block w-100" alt="Online Shop" />
-                </div>
-                <div class="carousel-item">
-                    <img src="https://source.unsplash.com/daily" class="d-block w-100" alt="Online Shop" />
-                </div>
+                    @foreach($product->galleries as $key => $value)
+                    <div class="carousel-item p-5 {{ $key == 0 ? 'active' : '' }} ">
+                        <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables' }}"" class="d-block w-100" alt="Online Shop" />
+                    </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

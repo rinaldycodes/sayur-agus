@@ -51,16 +51,29 @@
               </a>
             </li>
             @auth
-            <li class="nav-item">
-              <a class="nav-link" href="{{url('/admin/dashboard')}}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <form action="{{url('/logout')}}" method="post">
-                @csrf
-                <button type="submit" class="btn  nav-link">Logout</button>
-              </form>
-            </li>
+              @if(Auth::user()->role == 'ADMIN')
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/admin')}}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <form action="{{url('/logout')}}" method="post">
+                  @csrf
+                  <button type="submit" class="btn  nav-link">Logout</button>
+                </form>
+              </li>
+              @else
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/user')}}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <form action="{{url('/logout')}}" method="post">
+                  @csrf
+                  <button type="submit" class="btn  nav-link">Logout</button>
+                </form>
+              </li>
+              @endif
             @endauth
+            
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{url('/login')}}">Login</a>
@@ -78,13 +91,7 @@
     </nav>
     <!-- /NAVBAR -->
 
-    @if (session('message'))
-        <div class="alert alert-info text-dark">{{ session('message') }}</div>
-    @endif
-
     @yield('content')
-
-    
 
     <section id="contact" class="bg-success pb-5">
       <div class="container">

@@ -49,7 +49,12 @@
                                     
                                 </td>
                                 <td><small>Rp.{{ number_format($product->price,2,',','.')}}</small></td>
-                                <td><a href="#"><i class="fas fa-image fs-1"></i> Galeri</a></td>
+                                <td>
+                                    <a href="{{ route('galleries.show', $product->slug) }}">
+                                        <i class="fas fa-image fs-1"></i> Galeri <br>
+                                        {{ $product->galleries->count() }} <span>Foto</span>
+                                    </a>
+                                </td>
                                 <td>{{$product->created_at}}</td>
                                 <td>
                                     <div class="row">

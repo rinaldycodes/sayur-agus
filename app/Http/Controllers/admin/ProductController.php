@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -30,30 +31,32 @@ class ProductController extends Controller
      */
     public function create()
     {
-
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create', compact(
+            'categories',
+        ));
     }
 
     public function store(Request $request)
     {
         // MESSAGE FOR FORM
-        $messages = [
+        $msg = [
             'required' => 'Wajib di isi',
             'unique' => 'Data yang dimasukan sudah ada',
         ];
         
-
+        
         // VALIDATE FORM
         $validated = $request->validate([
             'name' => 'required|unique:products|max:255',
             'price' => 'required',
             'stock' => 'required',
-            'category_id' => 'required',
+            'category' => 'required',
             'description' => 'required',
-        ], $messages);
-
+        ], $msg);
+        
         //STORE DATA TO DATABASE
-        $product = new product;
+        $product = new Product;
         $product->name = $request->name;
 
         // SLUG
@@ -65,11 +68,11 @@ class ProductController extends Controller
         $product->price = $price;
 
         $product->stock = $request->stock;
-        $product->category_id = $request->category_id;
+        $product->category = $request->category;
         $product->description = $request->description;
         $product->save();
 
-        return redirect()->route('products.index')->with('message', 'Berhasil Menyimpan Data!');
+        return redirect()->route('galleries.show', $product->slug)->with('message', 'Berhasil Menyimpan Data dan silahkan upload gambar!');
     }
 
     public function show($id)

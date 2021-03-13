@@ -67,8 +67,9 @@
             <div class="col-md-4 col-lg-3 mb-3">
               <div class="card">
                 <a href="{{ url('/product', $product->slug)}}">
-                  <div class="card-body">
-                    <img src="https://source.unsplash.com/300x300/?beauty,food" class="" alt="online shop" />
+                  <div class="card-body text-center">
+                    <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables' }}" 
+                    class="" alt="{{ $product->name }} {{ config('app.name') }}" />
                     <p class="title-product text-muted">{{$product->name}}</p>
                     <p class="price-product fw-bold">Rp.{{ number_format($product->price,0,'.','.')}}</p>
                   </div>
@@ -99,7 +100,8 @@
             <div class="card">
               <a href="{{ url('/product', $product->slug)}}">
                 <div class="card-body">
-                  <img src="https://source.unsplash.com/400x400/?bayam,food" class="" alt="online shop" />
+                  <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables' }}" 
+                  class="" alt="{{ $product->name }} {{ config('app.name') }}" />
                   <p class="title-product text-muted">{{$product->name}}</p>
                   <p class="price-product fw-bold">Rp.{{ number_format($product->price,0,'.','.')}}</p>
                 </div>

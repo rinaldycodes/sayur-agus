@@ -23,10 +23,7 @@
     
 
 
-    @if (session('message'))
-        <div class="alert alert-info text-dark">{{ session('message') }}</div>
-    @endif
-
+  
     @yield('content')
 
 

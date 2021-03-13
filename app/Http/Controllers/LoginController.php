@@ -11,6 +11,9 @@ class LoginController extends Controller
 {
     // LOGIN AREA
     public function index() {
+        if (Auth::user()) {
+            return back()->with('message', 'Kamu sudah login');
+        }
         return view('login');
     }
 

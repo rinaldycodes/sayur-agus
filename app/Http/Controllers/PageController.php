@@ -15,7 +15,9 @@ class PageController extends Controller
 
     public function product() {
         $products = Product::latest()->paginate(4);
-        return view('product');
+        return view('product', compact(
+            'products',
+        ));
     }
 
     public function detail_product($slug) {

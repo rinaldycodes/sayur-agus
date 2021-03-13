@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'adminWeb' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        
+        'adminApi' => [
+            'driver' => 'token',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
