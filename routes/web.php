@@ -64,7 +64,7 @@ Route::middleware('auth.basic')
 
 ////////////////////////// ADMIN AREA //////////////////////////////////
 Route::prefix('admin')
-    ->middleware('admin')
+    ->middleware('auth.basic','admin')
     ->group( function() {
     Route::get('/', [DashboardAdminController::class, 'index']);
     Route::resource('/products', ProductController::class);

@@ -17,7 +17,7 @@
                     {{ Auth::user()->name }}
                 </div>
                 <div class="card-body">
-                
+                    <img src="{{ Auth::user()-> }]" alt="">
                 </div>
             </div>
         </div>
