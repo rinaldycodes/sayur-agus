@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,15 @@ Route::get('/shipping/checkout', [ShippingController::class, 'checkout'])
     ->name('cetak');
 ///////////////////// SHIPPING CONTROLLER ///////////////////////////////
 
-// ADMIN AREA
+/////////////////// AUTH AREA //////////////////////////////////
+Route::middleware('auth.basic')
+    ->group( function() {
+        Route::resource('/profile', ProfileController::class);
+
+    });
+/////////////////// ADMIN & USER AREA //////////////////////////////////
+
+////////////////////////// ADMIN AREA //////////////////////////////////
 Route::prefix('admin')
     ->middleware('admin')
     ->group( function() {
@@ -64,6 +73,6 @@ Route::prefix('admin')
     Route::resource('/galleries', GalleryController::class);
     Route::resource('/categories', CategoryController::class);
 });
-
+////////////////////////// ADMIN AREA //////////////////////////////////
 
 

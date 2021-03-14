@@ -85,7 +85,7 @@
                                     <b>Total:</b>
                                 </td>
                                 <td>
-                                    <STRONG>Rp.{{ number_format($total,0,',','.')}}</STRONG>
+                                    <STRONG>Rp.{{ number_format($total,0,',','.') }}</STRONG>
                                     </td>
                             </tr>
                         </tbody>

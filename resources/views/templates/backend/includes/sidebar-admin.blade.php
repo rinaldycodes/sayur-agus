@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url('/admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -25,6 +25,22 @@
     <div class="sidebar-heading">
         Interface
     </div>
+
+    <!-- Nav Item - Product Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfile"
+            aria-expanded="true" aria-controls="collapseProfile">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <div id="collapseProfile" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('profile.index')}}">Profile</a>
+                <a class="collapse-item" href="cards.html">Change Password</a>
+            </div>
+        </div>
+    </li>
+
 
     <!-- Nav Item - Product Collapse Menu -->
     <li class="nav-item">
