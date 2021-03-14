@@ -68,7 +68,7 @@
               <div class="card">
                 <a href="{{ url('/product', $product->slug)}}">
                   <div class="card-body text-center">
-                    <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables' }}" 
+                    <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/200x200/?'.$product->name }}" 
                     class="" alt="{{ $product->name }} {{ config('app.name') }}" />
                     <p class="title-product text-muted">{{$product->name}}</p>
                     <p class="price-product fw-bold">Rp.{{ number_format($product->price,0,'.','.')}}</p>
@@ -99,7 +99,7 @@
           <div class="col-md-4 col-lg-3 mb-3">
             <div class="card">
               <a href="{{ url('/product', $product->slug)}}">
-                <div class="card-body">
+                <div class="card-body text-center">
                   <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables' }}" 
                   class="" alt="{{ $product->name }} {{ config('app.name') }}" />
                   <p class="title-product text-muted">{{$product->name}}</p>

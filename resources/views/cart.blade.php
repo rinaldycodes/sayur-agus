@@ -9,17 +9,20 @@
         <div class="row text-center">
             <div class="col">
             <h1 class="fs-2">SHOPPING CART</h1>
-            <p class="text-muted">This is your shopping cart you have <b>{{ Cart::count()}} items</b></p>
+            <p class="text-muted">This is your shopping cart you have <b>{{ Cart::count() }} items</b></p>
+
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8 mb-5">
-            <table class="table table-hover">
+            <table class="table table-hover ">
                 <tbody>
-                @forelse (Cart::content() as $row)
-                    <tr>
-                        <td class="d-md-block d-none align-middle">
-                        <img src="https://source.unsplash.com/daily" alt="{{ $row->name }}.' ' {{ config('app.name')}}" />
+                @forelse (Cart::content() as $row)      
+                    <tr>  
+                        <td class="d-md-block d-none align-middle text-center">
+                        <img src="{{ $row->options->has('img') ? url('/storage', $row->options->img) : '' }}"
+                            class="rounded"
+                            alt="Foto {{ $row->name }} {{ config('app.name')}}" />
                         </td>
                         <td class="align-middle">
                         <b>{{ $row->name }}</b>
@@ -46,7 +49,10 @@
                 @endforelse
 
                 <tr>
-                    <td colspan="10"><b class="fs-4">Total: Rp.{{ Cart::total() }}</b></td>
+                    <td colspan="3"><b class="fs-4">Total: Rp.{{ Cart::total() }}</b></td>
+                    @if ( Cart::count() >= 1)
+                    <td><a href="{{ url('/destroy-cart')}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i>  DELETE ALL</a></td>
+                    @endif
                 </tr>
                 </tbody>
             </table>

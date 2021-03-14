@@ -55,23 +55,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{url('/admin')}}">Dashboard</a>
               </li>
-              <li class="nav-item">
-                <form action="{{url('/logout')}}" method="post">
-                  @csrf
-                  <button type="submit" class="btn  nav-link">Logout</button>
-                </form>
-              </li>
               @else
               <li class="nav-item">
                 <a class="nav-link" href="{{url('/user')}}">Dashboard</a>
               </li>
-              <li class="nav-item">
-                <form action="{{url('/logout')}}" method="post">
-                  @csrf
-                  <button type="submit" class="btn  nav-link">Logout</button>
-                </form>
-              </li>
               @endif
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/logout')}}">Logout</a>
+              </li>
             @endauth
             
             @guest
@@ -87,6 +78,13 @@
             </li>
           </ul>
         </div>
+      </div>
+
+      <!-- ///////// FLASH DATA ///////// -->
+      <div class="message text-center">
+        @if (session('message'))
+          <div class="alert alert-info text-dark">{{ session('message') }}</div>
+        @endif
       </div>
     </nav>
     <!-- /NAVBAR -->

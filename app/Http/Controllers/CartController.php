@@ -11,8 +11,12 @@ use Cart;
 class CartController extends Controller
 {
     public function index() {
-
-        return view('cart');
+        if (Cart::count() >= 1) {
+            return view('cart');
+        } else {
+            $msg = "Kamu belum menambahkan apapun ke keranjang!";
+            return view('errors.message', compact('msg'));
+        }
     }
    
     public function kode($format){
@@ -55,6 +59,9 @@ class CartController extends Controller
             'name' => $product->name,
             'qty' => $request->qty,
             'price' => $product->price,
+            "options" => [
+                'img' => $img = $product->galleries->first() ? $product->galleries->first()->img : ''
+                ],
         ]);
 
         return redirect('/cart');
@@ -68,17 +75,12 @@ class CartController extends Controller
     public function remove(Request $request, $rowId) {
         Cart::remove($rowId);
 
-        return redirect('/cart');
+        return redirect('/cart')->with('message', 'Berhasil Menghapus Cart');
     }
 
-    public function destroy(Request $request, $rowId) {
-
-        Cart::remove($rowId);
-
-        return redirect('/cart');
+    public function destroy(Request $request) {
+        Cart::destroy();
+        return redirect('/');
     }
 
-    public function shipping(){
-        return view('shipping');
-    }
 }

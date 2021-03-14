@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -14,16 +15,15 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::all();
-        $transaction = Transaction::latest()->paginate(5);
+        $total = Transaction::sum('transaction_total');
+        $countAll = Transaction::all()->count();
+        $countSuccess = Transaction::where('transaction_status', 'success')->count();
+        $countPending = Transaction::where('transaction_status', 'Pending')->count();
 
-        return view('admin.transactions.index', compact('transactions'));
-    }
-
-    
-    public function create()
-    {
-
-        return view('admin.transactions.create');
+        return view('admin.transactions.index', compact(
+            'transactions', 'countAll', 'countSuccess',
+            'countPending', 'total',
+        ));
     }
 
     public function store(Request $request)
@@ -66,46 +66,40 @@ class TransactionController extends Controller
 
     public function show($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        $transactionDetails = TransactionDetail::where('transaction_id', $id)
+            ->get();
+        ;
+
+        return view('admin.transactions.show', compact(
+            'transaction',
+            'transactionDetails',
+        ));
     }
 
  
-    public function edit($slug)
+    public function edit($id)
     {
-        $transaction = Transaction::where('slug', $slug)->firstOrFail();
+        $transaction = Transaction::where('id', $id)->firstOrFail();
 
         return view('admin.transactions.edit', compact('transaction'));
     }
 
   
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
         $messages = [
             'required' => 'Wajib di isi',
-            'unique' => 'Data yang dimasukan sudah ada',
         ];
         
         $validated = $request->validate([
-            'name' => 'required|unique:transactions|max:255',
-            'price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'description' => 'required',
+            'receiver_name' => 'required',
+            'transaction_status' => 'required',
         ], $messages);
 
         //store
-        $transaction = Transaction::where('slug', $slug)->firstOrFail();
-        $transaction->name = $request->name;
-
-        $slug = Str::of($request->name)->slug('-');
-        $transaction->slug = $slug;
-
-        $price = str_replace('.','', $request->price);
-        $transaction->price = $price;
-
-        $transaction->stock = $request->stock;
-        $transaction->category_id = $request->category_id;
-        $transaction->description = $request->description;
+        $transaction = Transaction::where('id', $id)->firstOrFail();
+        $transaction->transaction_status = $request->transaction_status;
         $transaction->save();
 
         return redirect()->route('transactions.index')->with('message', 'Berhasil Update Data!');

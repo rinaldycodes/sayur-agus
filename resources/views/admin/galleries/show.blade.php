@@ -42,7 +42,7 @@
         <div class="col-md-6">
             <div class="row text-center mb-3">
                 <div class="col">
-                <h6>Galeri {{$product->name}}</h6>
+                <h6>Galeri </h6>
                 </div>
             </div>
             <div class="row text-center">
@@ -57,7 +57,7 @@
                 </div>
                 @empty
                 <div class="col">
-                    <p>TIDAK ADA FOTO !</p>
+                    <p class="text-danger">TIDAK ADA FOTO !</p>
                 </div>
                 @endforelse
             </div>

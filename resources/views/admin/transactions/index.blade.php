@@ -11,19 +11,13 @@
         <div class="col text-right">
             <div class="row">
                 <div class="col">
-                    <small class=" badge badge-success">Sucess: 10</small>
+                    <small class=" badge badge-secondary">All: {{ $countAll }} </small>
                 </div>
                 <div class="col">
-                    <small class=" badge badge-secondary">In Cart: 10</small>
+                    <small class=" badge badge-success">Sucess: {{ $countSuccess }}</small>
                 </div>
                 <div class="col">
-                    <small class=" badge badge-warning">Pending: 10</small>
-                </div>
-                <div class="col">
-                    <small class=" badge badge-info">Cancel: 10</small>
-                </div>
-                <div class="col">
-                    <small class=" badge badge-danger">Failed: 10</small>
+                    <small class=" badge badge-danger">Pending: {{$countPending}}</small>
                 </div>
             </div>
         </div>
@@ -40,7 +34,8 @@
                         <thead class="text-center">
                             <tr>
                                 <th>No. Invoice</th>
-                                <th>User</th>
+                                <th>Penerima</th>
+                                <th>Payment</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -49,7 +44,8 @@
                         <tfoot class="text-center">
                             <tr>
                                 <th>No. Invoice</th>
-                                <th>User</th>
+                                <th>Penerima</th>
+                                <th>Payment</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -60,25 +56,23 @@
                            
                             <tr class="align-middle">
                                 <td>
-                                    <p><b>{{$transaction->name}}</b></p>
-                                    
+                                    <p><b>{{$transaction->id}}</b></p>
                                 </td>
-                                <td><small>Rp.{{ number_format($transaction->price,2,',','.')}}</small></td>
-                                <td><a href="#"><i class="fas fa-image fs-1"></i> Galeri</a></td>
-                                <td>{{$transaction->created_at}}</td>
+                                <td>
+                                    <p>{{$transaction->receiver_name}}</p>
+                                </td>
+                                <td>
+                                    <p><b class="text-uppercase">{{$transaction->payment}}</b></p>
+                                </td>
+                                <td><small>Rp.{{ number_format($transaction->transaction_total,0,',','.')}}</small></td>
+                                <td>{{$transaction->transaction_status}}</td>
                                 <td>
                                     <div class="row">
                                         <div class="col-sm mb-1">
-                                            <a href="{{route('transactions.edit', $transaction->slug)}}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                            <a href="{{route('transactions.edit', $transaction->id)}}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
                                         </div>
                                         <div class="col-sm mb-1">
-                                        <form action="{{route('transactions.destroy', $transaction->id)}}" method="post" data-toggle="tooltip" data-placement="top" title="Delete">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
+                                            <a href="{{route('transactions.show', $transaction->id)}}" data-toggle="tooltip" data-placement="top" title="Detail" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                                         </div>
                                     </div>
                                 </td>
@@ -86,7 +80,16 @@
                             @empty
                                 <p>Tidak ada transaksi <a href="{{ route('transactions.create')}}">Buat produk</a></p>
                             @endforelse
+                            <tr>
+                                <td colspan="3">
+                                    <b>Total:</b>
+                                </td>
+                                <td>
+                                    <STRONG>Rp.{{ number_format($total,0,',','.')}}</STRONG>
+                                    </td>
+                            </tr>
                         </tbody>
+                        
                     </table>
                 </div>
             </div>

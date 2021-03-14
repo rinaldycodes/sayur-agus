@@ -12,65 +12,59 @@
     </div>
         <div class="card shadow mb-4">
             <div class="card-body">
-                <form action="{{route('transactions.update', $transaction->slug)}}" method="post">
+                <form action="{{route('transactions.update', $transaction->id)}}" method="post">
                     @method('PUT')
                     @csrf
 
                     <div class="form-group">
-                        <label for="name">Nama Transaksi</label>
-                        <input 
+                        <label for="name">Nama Penerima</label>
+                        <input readonly 
                             type="text" 
-                            name="name"
-                            class="form-control @error('name') is-invalid @enderror"
-                            value="{{$transaction->name}}"
+                            name="receiver_name"
+                            class="form-control @error('receiver_name') is-invalid @enderror"
+                            value="{{$transaction->receiver_name}}"
                         />
-                        @error('name')
+                        @error('receiver_name')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="price">Harga Transaksi</label>
-                        <input 
+                        <label for="name">No. Telp / WA</label>
+                        <input readonly 
                             type="text" 
-                            name="price"
-                            maxlength="10"
-                            class="form-control @error('price') is-invalid @enderror"
-                            value="{{ number_format($transaction->price,0,'.','.')}}"
+                            name="no_telp"
+                            class="form-control @error('no_telp') is-invalid @enderror"
+                            value="{{$transaction->no_telp}}"
                         />
-                        @error('price')
+                        @error('no_telp')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="stock">Stok</label>
-                        <input 
+                        <label for="payment">Payment</label>
+                        <input readonly 
                             type="text" 
-                            name="stock" 
-                            value="{{$transaction->stock}}" 
-                            class="form-control @error('stock') is-invalid @enderror"
+                            name="payment" 
+                            value="{{$transaction->payment}}" 
+                            class="form-control @error('payment') is-invalid @enderror"
                         />
-                        @error('stock')
+                        @error('payment')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="category">Kategori</label>
+                        <label for="category">Status</label> <br> 
+                        <small class="text-danger">Current:  {{$transaction->transaction_status}}</small>
                         <select 
-                            name="category_id" 
-                            class="form-control @error('stock') is-invalid @enderror"
+                            name="transaction_status" 
+                            class="form-control @error('transaction_status') is-invalid @enderror"
                         >
-                            <option value="">-=Pilih=-</option>
-                            <option value="{{$transaction->category_id}}">{{$transaction->category_id}}</option>
+                            <option value="">PILIH</option>
+                            <option value="PENDING">PENDING</option>
+                            <option value="SUCCESS">SUCCESS</option>
+                            <option value="FAILED">FAILED</option>
                         </select>
-                        @error('category_id')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Deskripsi</label>
-                        <textarea name="description" id="description" cols="15" rows="5" class="form-control @error('stock') is-invalid @enderror">{{$transaction->description}}</textarea>
-                      
-                        @error('description')
+                        @error('transaction_status')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

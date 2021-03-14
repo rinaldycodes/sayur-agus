@@ -16,22 +16,42 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card-body ">
-                <form action="">
+                <form action="{{ url('/shipping/store') }}" method="post">
+                @csrf
                     <div class="mb-3">
                         <label for="name">Nama Penerima <small class="text-danger">*</small></label>
-                        <input type="text" name="name" id="name" class="form-control">
+                        <input type="text" name="name" id="name" 
+                            class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name') }}">
+                        @error('name')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror  
                     </div>
                     <div class="mb-3">
                         <label for="no_telp">No. Whatsapp / No. Aktif  <small class="text-danger">*</small></label>
-                        <input type="text" name="no_telp" id="no_telp" class="form-control">
+                        <input type="text" name="no_telp" id="no_telp" 
+                            class="form-control  @error('no_telp') is-invalid @enderror"
+                            value="{{ old('no_telp') }}">
+                        @error('no_telp')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror  
                     </div>
                     <div class="mb-5">
-                        <label for="address">Nama Penerima <small class="text-danger">*</small></label>
-                        <textarea name="address" id="address" cols="15" rows="5" class="form-control"></textarea>
+                        <label for="address">Alamat <small class="text-danger">*</small></label>
+                        <textarea name="address" id="address" cols="15" rows="5" class="form-control @error('address') is-invalid @enderror"></textarea>
+                        @error('address')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror  
                     </div>
                     <div class="mb-5">
-                        <label for="add_note" class="text-muted">Catatan untuk penjual</label>
-                        <textarea name="add_note" id="add_note" cols="15" rows="5" class="form-control"></textarea>
+                        <label for="message" class="text-muted">Catatan untuk penjual</label>
+                        <textarea name="message" id="message" cols="15" rows="5" class="form-control"></textarea>
                     </div>
             </div>
         </div>
@@ -85,12 +105,17 @@
                                 <p class="fs-5" >Payment</p>
                             </td>
                             <td class="align-middle text-end " colspan="2"> 
-                                <select name="payment" id="" class="form-control">
-                                <option value="">-=pILIH=-</option>
+                                <select name="payment" id="" class="form-control @error('payment') is-invalid @enderror">
+                                <option value="">-=PILIH=-</option>
                                     <option value="cod">COD - BAYAR DI TEMPAT</option>
                                     <option value="bca">Agus Irawan - BCA - 123789123</option>
                                     <option value="bnibca">Agus Irawan - BNI - 123789123</option>
                                 </select>
+                                @error('payment')
+                                    <div class="alert alert-danger text-center">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </td>
                         </tr>
                     </table>
@@ -98,12 +123,12 @@
                 </div>
 
                 <div class="row">
-                <div class="col">
-                    <a href="#" class="btn btn-secondary btn-md ">CANCEL</a>
-                </div>
-                <div class="col text-end">
-                    <a href="#" class="btn btn-success btn-md ">CHECKOUT</a>
-                </div>
+                    <div class="col">
+                        <a href="#" class="btn btn-secondary btn-md ">CANCEL</a>
+                    </div>
+                    <div class="col text-end">
+                        <button type="submit" class="btn btn-success btn-md ">CHECKOUT</button>
+                    </div>
                 </div>
 
             </form>

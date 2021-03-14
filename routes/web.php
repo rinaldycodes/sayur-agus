@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -32,17 +33,25 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/auth', [LoginController::class, 'processLogin']);
 Route::get('/register', [LoginController::class, 'register']);
 Route::post('/process-register', [LoginController::class, 'processRegister']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
-// CART CONTROLLER
+///////////////////// CART CONTROLLER ///////////////////////////////
 Route::post('/add-item/{slug}', [CartController::class, 'add_item']);
 Route::get('store-cart/{slug}', [CartController::class, 'store']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::get('/remove-item/{rowId}', [CartController::class, 'remove']);
 Route::get('/update-item/{rowId}', [CartController::class, 'update']);
-Route::get('/destroy-cart/{rowId}', [CartController::class, 'destroy']);
-Route::get('/shipping', [CartController::class, 'shipping']);
+Route::get('/destroy-cart', [CartController::class, 'destroy']);
+///////////////////// CART CONTROLLER ///////////////////////////////
 
+///////////////////// SHIPPING CONTROLLER ///////////////////////////////
+Route::get('/shipping', [ShippingController::class, 'index']);
+Route::post('/shipping/store', [ShippingController::class, 'store']);
+Route::get('/shipping/checkout', [ShippingController::class, 'checkout'])
+    ->name('checkout');
+    Route::get('/shipping/cetak', [ShippingController::class, 'cetak'])
+    ->name('cetak');
+///////////////////// SHIPPING CONTROLLER ///////////////////////////////
 
 // ADMIN AREA
 Route::prefix('admin')

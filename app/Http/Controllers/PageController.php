@@ -14,7 +14,7 @@ class PageController extends Controller
     }
 
     public function product() {
-        $products = Product::latest()->paginate(4);
+        $products = Product::latest()->get();
         return view('product', compact(
             'products',
         ));
