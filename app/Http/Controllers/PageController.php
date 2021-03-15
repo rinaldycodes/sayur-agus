@@ -8,7 +8,7 @@ use App\Models\Product;
 class PageController extends Controller
 {
     public function home() {
-        $products = Product::all();
+        $products = Product::with('galleries')->limit(4)->get();
 
         return view('home', compact('products'));
     }
