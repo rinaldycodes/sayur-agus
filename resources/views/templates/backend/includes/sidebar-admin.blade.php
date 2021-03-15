@@ -36,7 +36,7 @@
         <div id="collapseProfile" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('profile.index')}}">Profile</a>
-                <a class="collapse-item" href="cards.html">Change Password</a>
+                <a class="collapse-item" href="{{url('/profile/change-password')}}">Change Password</a>
             </div>
         </div>
     </li>

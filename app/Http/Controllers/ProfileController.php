@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Hash;
 
 class ProfileController extends Controller
 {
@@ -59,5 +60,32 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changePassword() {
+        return view('profile.change-password');
+    }
+
+    public function changePasswordProcess(Request $request , $id) {
+
+        $msg = [
+            'password.required' => "Password tidak boleh kosong",
+            'new_password.required' => "New Password tidak boleh kosong",
+        ];
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required|min:3',
+        ], $msg);
+
+
+        if(Hash::check($request->password, Auth::user()->password)) {
+            $hashed = Hash::make($request->new_password);
+            $user = User::find(Auth::user()->id);
+            $user->password = $hashed;
+            $user->update();
+            return back()->with('message', 'Successfuly changed!');
+        }
+        return back()->with('message', 'Current Password does not match');
+        
     }
 }

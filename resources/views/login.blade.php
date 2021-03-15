@@ -39,8 +39,10 @@
                         class="form-control @error('password') is-invalid @enderror"
                     />
                     @error('password')
+                    <div class="alert alert-danger">
                         {{ $message }}
-                    @enderror
+                    </div>
+                    @enderror  
                 </div>
 
                 <div class="button mb-5">

@@ -57,6 +57,8 @@ Route::get('/shipping/checkout', [ShippingController::class, 'checkout'])
 /////////////////// AUTH AREA //////////////////////////////////
 Route::middleware('auth.basic')
     ->group( function() {
+        Route::get('/profile/change-password',[ ProfileController::class, 'changePassword']);
+        Route::put('/profile/change-password/{id}',[ ProfileController::class, 'changePasswordProcess']);
         Route::resource('/profile', ProfileController::class);
 
     });

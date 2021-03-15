@@ -28,6 +28,8 @@ class LoginController extends Controller
             'password' => 'required',
         ], $msg);
 
+        $credentials = ['email' => $request->email, 'password' => $request->password];
+
         // CHECK JIKA ROLE BERTIPE USER 
         // MAKA USER/DASHBOARD
         if (Auth::attempt([
