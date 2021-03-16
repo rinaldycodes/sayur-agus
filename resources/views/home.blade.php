@@ -220,16 +220,16 @@
             <div class="col-md-4 mb-3">
                 <p>
                     <b class="fs-2">{{ config("app.name") }}</b> bergerak di
-                    jasa dan pelayanan, kami memberikan pelayanan terbaik kami
-                    untuk anda.
+                    bidang jasa dan toko online, titip belanja sayur ? belanja
+                    makanan ? atau antar dokumen ? ya kami melakukannya .
                 </p>
             </div>
             <div class="col-md-4">
                 <p>
                     "KAMU adalah RAJA. Iya KAMU! KAMU! kamu yang menggunakan
                     jasa dan pelayanan kami, kami anggap sebagai raja, dan
-                    tentunya kami harus memberikan pelayanan terbaik kami untuk
-                    RAJA kami yaitu KAMU"
+                    tentunya kami harus memberikan pelayanan terbaik untuk RAJA
+                    yaitu KAMU"
                 </p>
             </div>
         </div>

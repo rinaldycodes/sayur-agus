@@ -10,7 +10,7 @@
 }
 
 img.img-prof {
-    height: 200px !important;
-    width: 200px !important;
-    object-fit: contain !important;
+    height: 10rem;
+    width: 10rem;
+    object-fit: cover !important;
 }

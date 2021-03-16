@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 Use App\Models\User;
+Use App\Models\Profile;
 
 class LoginController extends Controller
 {
     // LOGIN AREA
     public function index() {
         if (Auth::user()) {
-            return back()->with('message', 'Kamu sudah login');
+            return redirect('/')->with('message', 'Kamu sudah login');
         }
         return view('login');
     }
@@ -70,11 +71,14 @@ class LoginController extends Controller
         $msg = [
             'email.required' => "Email tidak boleh kosong",
             'password.required' => "Password tidak boleh kosong",
+            'no_telp.required' => "No HP / WA tidak boleh kosong",
+
         ];
 
         $validated = $request->validate([
             'email' => 'required|max:255',
             'password' => 'required',
+            'no_telp' => 'required|min:11|numeric',
         ], $msg);
         
         $user = new User;
@@ -82,6 +86,11 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->name = $request->name;
         $user->save();
+
+        $profile = new Profile;
+        $profile->user_id = $user->id;
+        $profile->no_telp = $request->no_telp;
+        $profile->save();
 
         return back()->with('message', 'Berhasil Membuat Akun');
     }

@@ -45,14 +45,14 @@ class ProfileController extends Controller
         $request->validate([
             'photo' => 'required|mimes:jpg,jpeg,png',
             'name' => 'required',
-        ], );
+        ],);
 
 
         $user = User::find(Auth::user()->id);
         $user->name = $request->name;
         $user->save();
         
-        $profile = new Profile;
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
         $profile->user_id = Auth::user()->id;
         $profile->photo = $request->file('photo')->store('images', 'public');
         $profile->address = $request->address;

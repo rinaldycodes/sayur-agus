@@ -85,7 +85,7 @@
                 <a class="collapse-item" href="{{ route('products.index') }}"
                     >List Produk</a
                 >
-                <a class="collapse-item" href="cards.html"
+                <a class="collapse-item" href="{{ route('products.create') }}"
                     >Tambah Produk Baru</a
                 >
             </div>
@@ -131,7 +131,7 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card">
-        <h6>Sidebar Message</h6>
-        <p class="text-center mb-2">Semangat Terus!!!</p>
+        <h6>WEB VERSION</h6>
+        <p class="text-center mb-2">Tyaga SHOP v1</p>
     </div>
 </ul>
