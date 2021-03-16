@@ -42,6 +42,11 @@ class ProfileController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'photo' => 'required|mimes:jpg,jpeg,png',
+            'name' => 'required',
+        ], );
+
 
         $user = User::find(Auth::user()->id);
         $user->name = $request->name;

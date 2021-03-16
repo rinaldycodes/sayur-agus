@@ -52,7 +52,7 @@ class ShippingController extends Controller
             $transaction->payment = $request->payment;
             $transaction->message = $request->message ? $request->message : '' ;
             $transaction->transaction_total = str_replace('.', '', Cart::total());
-            $transaction->transaction_status = "Pending";
+            $transaction->transaction_status = "PENDING";
             $transaction->save();
     
             foreach (Cart::content() as $item) {
@@ -83,8 +83,8 @@ class ShippingController extends Controller
         $id = session('transaction_id');
         $transaction = Transaction::findOrFail($id);
         $transactionDetails = TransactionDetail::where('transaction_id', $id)
+            ->with('product')
             ->get();
-        ;
 
         return view('checkout', compact(
             'transaction',
@@ -96,6 +96,7 @@ class ShippingController extends Controller
         $id = session('transaction_id');
         $transaction = Transaction::findOrFail($id);
         $transactionDetails = TransactionDetail::where('transaction_id', $id)
+            ->with('product')
             ->get();
         ;
         

@@ -11,6 +11,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\DashboardUserController;
+use App\Http\Controllers\User\PesananKamuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +64,19 @@ Route::middleware('auth.basic')
         Route::resource('/profile', ProfileController::class);
 
     });
-/////////////////// ADMIN & USER AREA //////////////////////////////////
+/////////////////////////// END AUTH AREA //////////////////////////////////
+
+////////////////////////// USER AREA //////////////////////////////////
+Route::prefix('user')
+    ->middleware('auth.basic')
+    ->group( function() {
+        Route::get('/', [DashboardUserController::class, 'index']);
+        Route::get('/pesanan-kamu', [PesananKamuController::class, 'index']);
+        Route::get('/pesanan-kamu/{id}', [PesananKamuController::class, 'show'])->name('pesanan-kamu.show');
+    });
+////////////////////////// END USER AREA //////////////////////////////////
+
+
 
 ////////////////////////// ADMIN AREA //////////////////////////////////
 Route::prefix('admin')

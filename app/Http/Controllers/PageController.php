@@ -14,7 +14,7 @@ class PageController extends Controller
     }
 
     public function product() {
-        $products = Product::latest()->get();
+        $products = Product::with('galleries')->latest()->get();
         return view('product', compact(
             'products',
         ));
@@ -22,8 +22,13 @@ class PageController extends Controller
 
     public function detail_product($slug) {
         $product = Product::where('slug', $slug)->firstOrFail();
+        $related = Product::where('category', $product->category)
+            ->with('galleries')
+            ->limit(4)
+            ->inRandomOrder()
+            ->get();
         
-        return view('detail-product', compact('product'));
+        return view('detail-product', compact('product','related'));
     }
 
 

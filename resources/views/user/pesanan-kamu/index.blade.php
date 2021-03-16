@@ -1,35 +1,14 @@
-@extends('templates.backend.master-admin') @section('title', 'Semua Transaksi' )
-@section('content')
+@extends('templates.backend.master-admin') @section('title', 'Semua Pesanan
+Kamu' ) @section('content')
 <!-- Page Heading -->
 <div class="row align-items-center">
     <div class="col">
-        <h1 class="h3 mb-2 text-gray-800">Transaksi</h1>
-    </div>
-    <div class="col text-right">
-        <div class="row">
-            <div class="col">
-                <small class="badge badge-secondary"
-                    >All: {{ $countAll }}
-                </small>
-            </div>
-            <div class="col">
-                <small class="badge badge-success"
-                    >Sucess: {{ $countSuccess }}</small
-                >
-            </div>
-            <div class="col">
-                <small class="badge badge-danger"
-                    >Pending: {{ $countPending }}</small
-                >
-            </div>
-        </div>
+        <h1 class="h3 mb-2 text-gray-800">Pesanan Kamu</h1>
     </div>
 </div>
 
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Semua Transaksi</h6>
-    </div>
+    <div class="card-header py-3"></div>
     <div class="card-body">
         <div class="table-responsive">
             <table
@@ -78,15 +57,12 @@
                                 >
                             </p>
                         </td>
-
-                        <?php 
-                            $status = $transaction->transaction_status; 
-                            $value = ($status == 'PENDING') ? "text-danger" : (( $status == 'SUCCESS') ? "text-success" : ""); 
-                        ?>
-
-
-                        <td class="{{ $value }}">
-                            {{$transaction->transaction_status}}
+                        <td
+                            class="{{$transaction->transaction_status == 'Pending' 
+                                ? 'text-danger' 
+                                : ''}}"
+                        >
+                            {{$transaction->transaction_status }}
                         </td>
                         <td>
                             <small
@@ -97,17 +73,7 @@
                             <div class="row">
                                 <div class="col-sm mb-1">
                                     <a
-                                        href="{{route('transactions.edit', $transaction->id)}}"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Edit"
-                                        class="btn btn-sm btn-success"
-                                        ><i class="fas fa-edit"></i
-                                    ></a>
-                                </div>
-                                <div class="col-sm mb-1">
-                                    <a
-                                        href="{{route('transactions.show', $transaction->id)}}"
+                                        href="{{route('pesanan-kamu.show', $transaction->id)}}"
                                         data-toggle="tooltip"
                                         data-placement="top"
                                         title="Detail"
@@ -119,26 +85,10 @@
                         </td>
                     </tr>
                     @empty
-                    <p>
-                        Tidak ada transaksi
-                        <a href="{{ route('transactions.create') }}"
-                            >Buat produk</a
-                        >
-                    </p>
+                    <p class="text-info">Tidak ada Pesanan</p>
                     @endforelse
                 </tbody>
-                <tr class="text-center">
-                    <td colspan="4">
-                        <b>Total Success Transaction:</b>
-                    </td>
-                    <td>
-                        <STRONG class="text-success"
-                            >Rp.{{
-                                number_format($totalSuccess, 0, ",", ".")
-                            }}</STRONG
-                        >
-                    </td>
-                </tr>
+
                 <tr class="text-center">
                     <td colspan="4">
                         <b>Total All:</b>

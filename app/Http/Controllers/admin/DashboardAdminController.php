@@ -13,12 +13,13 @@ class DashboardAdminController extends Controller
     {
         $transactions = Transaction::all();
         $userCount = User::where('role', 'USER')->count();
+        $users = User::where('role', 'USER')->get();
 
         $total = Transaction::sum('transaction_total');
         $countAll = Transaction::all()->count();
         $countSuccess = Transaction::where('transaction_status', 'success')->count();
         $countPending = Transaction::where('transaction_status', 'Pending')->count();
-        $countPending = Transaction::where('transaction_status', 'Pending')->count();
+        $countFailed = Transaction::where('transaction_status', 'Failed')->count();
         $monthNow = date('y-m');
         $totalMonthly = Transaction::where('created_at', $monthNow)
             ->orwhere('transaction_status', 'success')
@@ -26,9 +27,10 @@ class DashboardAdminController extends Controller
 
         
         return view('admin/dashboard-admin',  compact(
-            'transactions', 'countAll', 'countSuccess',
-            'countPending', 'total', 'monthNow' , 'totalMonthly',
-            'userCount',
+            'transactions', 'users',
+            'countAll', 'countSuccess',
+            'userCount', 'countPending', 
+            'total', 'monthNow' , 'totalMonthly',
         ));
     }
 }

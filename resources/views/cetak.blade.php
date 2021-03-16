@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
 
     <!-- MY CSS -->
-    <title>Transaction - {{ Auth::user()->name }} - {{ session('transaction_id') }}</title>
+    <title>INVOICE - {{ Auth::user()->name }} - {{ session('transaction_id') }}</title>
 </head>
 <body>
     <section id="shipping" class="mb-5 mt-3">

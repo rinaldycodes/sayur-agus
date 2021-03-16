@@ -16,13 +16,14 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::all();
         $total = Transaction::sum('transaction_total');
+        $totalSuccess = Transaction::where('transaction_status', 'success')->sum('transaction_total');
         $countAll = Transaction::all()->count();
         $countSuccess = Transaction::where('transaction_status', 'success')->count();
         $countPending = Transaction::where('transaction_status', 'Pending')->count();
 
         return view('admin.transactions.index', compact(
             'transactions', 'countAll', 'countSuccess',
-            'countPending', 'total',
+            'countPending', 'total', 'totalSuccess' 
         ));
     }
 

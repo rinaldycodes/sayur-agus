@@ -27,9 +27,6 @@
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <!-- Heading -->
-    <div class="sidebar-heading">Interface</div>
-
     <!-- Nav Item - Product Collapse Menu -->
     <li class="nav-item">
         <a
@@ -56,7 +53,7 @@
                 <a
                     class="collapse-item"
                     href="{{ url('/profile/change-password') }}"
-                    >Change Password</a
+                    >Ganti Password</a
                 >
             </div>
         </div>
@@ -68,45 +65,42 @@
             class="nav-link collapsed"
             href="#"
             data-toggle="collapse"
-            data-target="#collapseProduct"
+            data-target="#collapseYourOrder"
             aria-expanded="true"
-            aria-controls="collapseProduct"
+            aria-controls="collapseYourOrder"
         >
             <i class="fas fa-fw fa-box"></i>
-            <span>Produk</span>
+            <span>Pesanan Kamu</span>
         </a>
         <div
-            id="collapseProduct"
+            id="collapseYourOrder"
             class="collapse"
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
         >
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('products.index') }}"
-                    >List Produk</a
-                >
-                <a class="collapse-item" href="cards.html"
-                    >Tambah Produk Baru</a
+                <a class="collapse-item" href="{{ url('/user/pesanan-kamu') }}"
+                    >Pesanan Kamu</a
                 >
             </div>
         </div>
     </li>
 
-    <!-- Nav Item - Transaction Collapse Menu -->
+    <!-- Nav Item - Pembayaran Collapse Menu -->
     <li class="nav-item">
         <a
             class="nav-link collapsed"
             href="#"
             data-toggle="collapse"
-            data-target="#collapseTransaksi"
+            data-target="#collapsePembayaran"
             aria-expanded="true"
-            aria-controls="collapseTransaksi"
+            aria-controls="collapsePembayaran"
         >
-            <i class="fas fa-fw fa-dollar-sign"></i>
-            <span>Transaksi</span>
+            <i class="fas fa fa-credit-card"></i>
+            <span>Pembayaran</span>
         </a>
         <div
-            id="collapseTransaksi"
+            id="collapsePembayaran"
             class="collapse"
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
@@ -115,7 +109,7 @@
                 <a
                     class="collapse-item"
                     href="{{ route('transactions.index') }}"
-                    >List Transaksi</a
+                    >Pembayaran</a
                 >
             </div>
         </div>
@@ -127,11 +121,5 @@
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-
-    <!-- Sidebar Message -->
-    <div class="sidebar-card">
-        <h6>Sidebar Message</h6>
-        <p class="text-center mb-2">Semangat Terus!!!</p>
     </div>
 </ul>
