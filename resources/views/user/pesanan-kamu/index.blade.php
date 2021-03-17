@@ -53,7 +53,7 @@ Kamu' ) @section('content')
                             <p>
                                 <b
                                     class="text-uppercase"
-                                    >{{$transaction->payment->payment}}</b
+                                    >{{ $transaction->payment ? $transaction->payment->payment : ''}}</b
                                 >
                             </p>
                         </td>

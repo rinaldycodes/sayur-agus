@@ -31,6 +31,13 @@
                             <label for="address">Alamat</label>
                             <p class="fw-bold">{{ $transaction->address }}</p>
                         </div>
+                        <div class="mb-5">
+                            <label for="address">Status</label>
+                            <p class="fw-bold">{{ $transaction->transaction_status }}</p>
+                            @if ($transaction->transaction_status == 'PENDING')
+                            <p class="text-danger">Transaksi ini belum dibayar, silahkan bayar dan lakukan konfirmasi pembayaran</p>
+                            @endif
+                        </div>
                         @if ($transaction->message)
                         <div class="mb-5">
                             <label for="message" class="text-muted">Catatan untuk penjual</label>
@@ -89,7 +96,7 @@
                                 <p class="fs-5" >Payment</p>
                             </td>
                             <td class="align-middle text-end " colspan="2"> 
-                                <p class="text-uppercase fw-bold">{{ $transaction->payment->payment }}</p>
+                                <p class="text-uppercase fw-bold">{{ $transaction->payment ? $transaction->payment->payment : ''}}</p>
                             </td>
                         </tr>
                     </table>
@@ -98,7 +105,7 @@
                         <div class="col-md-4 card-body text-center">
                             <h6 class="fw-bold">{{ $payment->payment }}</h6>
                             <small class="text-muted">{{ $payment->name }}</small> <br>
-                            <small class="fw-bold">{{ $payment->name }}</small>
+                            <small class="fw-bold">{{ $payment->no_rek }}</small>
                         </div>
                         @endforeach
                     </div>

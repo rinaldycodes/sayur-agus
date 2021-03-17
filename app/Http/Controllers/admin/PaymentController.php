@@ -64,15 +64,15 @@ class PaymentController extends Controller
     }
 
  
-    public function edit($slug)
+    public function edit($id)
     {
-        $product = Payment::where('slug', $slug)->firstOrFail();
+        $payment = Payment::findOrFail($id);
 
-        return view('admin.payments.edit', compact('product'));
+        return view('admin.payments.edit', compact('payment'));
     }
 
   
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
         $messages = [
             'required' => 'Wajib di isi',
@@ -80,27 +80,17 @@ class PaymentController extends Controller
         ];
         
         $validated = $request->validate([
-            'name' => 'required|unique:payments|max:255',
-            'price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'description' => 'required',
+            'payment' => 'required|max:50',
+            'name' => 'required|max:50',
+            'no_rek' => 'required|max:50',
         ], $messages);
 
         //store
-        $product = Payment::where('slug', $slug)->firstOrFail();
-        $product->name = $request->name;
-
-        $slug = Str::of($request->name)->slug('-');
-        $product->slug = $slug;
-
-        $price = str_replace('.','', $request->price);
-        $product->price = $price;
-
-        $product->stock = $request->stock;
-        $product->category_id = $request->category_id;
-        $product->description = $request->description;
-        $product->save();
+        $payment = Payment::findOrFail($id);
+        $payment->payment = $request->payment;
+        $payment->name = $request->name;
+        $payment->no_rek = $request->no_rek;
+        $payment->save();
 
         return redirect()->route('payments.index')->with('message', 'Berhasil Update Data!');
     }

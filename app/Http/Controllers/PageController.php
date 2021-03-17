@@ -9,7 +9,7 @@ use App\Models\Category;
 class PageController extends Controller
 {
     public function home() {
-        $products = Product::with('galleries')->limit(4)->get();
+        $products = Product::with('galleries')->inRandomOrder()->limit(4)->latest()->get();
 
         return view('home', compact('products'));
     }
