@@ -59,7 +59,7 @@ class ProfileController extends Controller
         $profile->no_telp = $request->no_telp;
         $profile->save();
 
-        return back();
+        return redirect('/profile');
     }
 
     public function destroy($id)

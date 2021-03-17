@@ -14,7 +14,7 @@ class TransactionController extends Controller
     
     public function index()
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::with('payment')->get();
         $total = Transaction::sum('transaction_total');
         $totalSuccess = Transaction::where('transaction_status', 'success')->sum('transaction_total');
         $countAll = Transaction::all()->count();
@@ -109,6 +109,10 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         $transaction = Transaction::findOrFail($id);
+        $transactionDetail = TransactionDetail::where('transaction_id', $transaction->id)
+            ->firstOrFail();
+        
+        $transactionDetail->delete();
         $transaction->delete();
 
         return redirect()->route('transactions.index')->with('message', 'Berhasil Menghapus Data');

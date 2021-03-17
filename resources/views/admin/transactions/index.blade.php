@@ -74,16 +74,15 @@
                             <p>
                                 <b
                                     class="text-uppercase"
-                                    >{{$transaction->payment}}</b
+                                    >{{$transaction->payment->payment}}</b
                                 >
                             </p>
                         </td>
 
                         <?php 
-                            $status = $transaction->transaction_status; 
-                            $value = ($status == 'PENDING') ? "text-danger" : (( $status == 'SUCCESS') ? "text-success" : ""); 
-                        ?>
-
+                            $status = $transaction->transaction_status; $value =
+                        ($status == 'PENDING') ? "text-danger" : (( $status ==
+                        'SUCCESS') ? "text-success" : ""); ?>
 
                         <td class="{{ $value }}">
                             {{$transaction->transaction_status}}

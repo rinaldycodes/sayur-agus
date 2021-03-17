@@ -7,12 +7,14 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\PaymentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DashboardUserController;
 use App\Http\Controllers\User\PesananKamuController;
+use App\Http\Controllers\User\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ use App\Http\Controllers\User\PesananKamuController;
 
 Route::get('/', [PageController::class, 'home']);
 Route::get('/product', [PageController::class, 'product']);
+Route::get('/p/{slug}', [PageController::class, 'category_page']);
 Route::get('/product/{slug}', [PageController::class, 'detail_product']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/auth', [LoginController::class, 'processLogin']);
@@ -52,7 +55,7 @@ Route::get('/shipping', [ShippingController::class, 'index']);
 Route::post('/shipping/store', [ShippingController::class, 'store']);
 Route::get('/shipping/checkout', [ShippingController::class, 'checkout'])
     ->name('checkout');
-    Route::get('/shipping/cetak', [ShippingController::class, 'cetak'])
+    Route::get('/shipping/cetak/{transaction_id}', [ShippingController::class, 'cetak'])
     ->name('cetak');
 ///////////////////// SHIPPING CONTROLLER ///////////////////////////////
 
@@ -73,6 +76,7 @@ Route::prefix('user')
         Route::get('/', [DashboardUserController::class, 'index']);
         Route::get('/pesanan-kamu', [PesananKamuController::class, 'index']);
         Route::get('/pesanan-kamu/{id}', [PesananKamuController::class, 'show'])->name('pesanan-kamu.show');
+        Route::resource('/pembayaran', PembayaranController::class);
     });
 ////////////////////////// END USER AREA //////////////////////////////////
 
@@ -88,6 +92,8 @@ Route::prefix('admin')
     Route::get('/galleries/delete/{id}', [GalleryController::class, 'delete']);
     Route::resource('/galleries', GalleryController::class);
     Route::resource('/categories', CategoryController::class);
+    Route::resource('/payments', PaymentController::class);
+    
 });
 ////////////////////////// ADMIN AREA //////////////////////////////////
 

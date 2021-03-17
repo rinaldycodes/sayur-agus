@@ -89,39 +89,28 @@
                                 <p class="fs-5" >Payment</p>
                             </td>
                             <td class="align-middle text-end " colspan="2"> 
-                                <p class="text-uppercase fw-bold">{{ $transaction->payment }}</p>
+                                <p class="text-uppercase fw-bold">{{ $transaction->payment->payment }}</p>
                             </td>
                         </tr>
                     </table>
                     <div class="row">
+                        @foreach( $payments as $payment)
                         <div class="col-md-4 card-body text-center">
-                            <h6 class="fw-bold">COD</h6>
-                            <small class="text-muted">Bayar ditempat anda</small>
+                            <h6 class="fw-bold">{{ $payment->payment }}</h6>
+                            <small class="text-muted">{{ $payment->name }}</small> <br>
+                            <small class="fw-bold">{{ $payment->name }}</small>
                         </div>
-                        <div class="col-md-4 card-body text-center">
-                            <h6 class="fw-bold">BCA</h6>
-                            <small class="text-muted">Pembayaran via bank bca</small> <br>
-                            <small class="text-muted fw-bold">AGUS <br>
-                                NO.REK: 123-456-789
-                            </small>
-                        </div>
-                        <div class="col-md-4 card-body text-center">
-                            <h6 class="fw-bold">BNI</h6>
-                            <small class="text-muted">Pembayaran via bank bca</small> <br>
-                            <small class="text-muted fw-bold">AGUS <br>
-                                NO.REK: 123-456-789
-                            </small>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <a href="#" class="btn btn-secondary btn-md ">RIWAYAT TRANSAKSI</a>
+                        <a href="{{url('/user/pesanan-kamu')}}" class="btn btn-secondary btn-md ">RIWAYAT PESANAN KAMU</a>
                     </div>
                     <div class="col text-end">
-                        <a href="{{route('cetak')}}" class="btn-success btn-md btn"> <i class="bi bi-printer-fill"></i> CETAK</a>
+                        <a href="{{route('cetak', $transaction->id )}}" class="btn-success btn-md btn"> <i class="bi bi-printer-fill"></i> CETAK</a>
                     </div>
                 </div>
 

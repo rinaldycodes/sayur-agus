@@ -105,13 +105,13 @@
                                 <p class="fs-5" >Payment</p>
                             </td>
                             <td class="align-middle text-end " colspan="2"> 
-                                <select name="payment" id="" class="form-control @error('payment') is-invalid @enderror">
+                                <select name="payment_id" id="" class="form-control @error('payment') is-invalid @enderror">
                                 <option value="">-=PILIH=-</option>
-                                    <option value="cod">COD - BAYAR DI TEMPAT</option>
-                                    <option value="bca">Agus Irawan - BCA - 123789123</option>
-                                    <option value="bnibca">Agus Irawan - BNI - 123789123</option>
+                                @foreach ( $payments as $payment)
+                                    <option value="{{ $payment->id }}">{{ $payment->payment }}</option>
+                                @endforeach
                                 </select>
-                                @error('payment')
+                                @error('payment_id')
                                     <div class="alert alert-danger text-center">
                                         {{$message}}
                                     </div>

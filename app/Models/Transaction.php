@@ -13,7 +13,7 @@ class Transaction extends Model
     protected $fillable = [
         'user_id', 'receiver_name', 'no_telp', 
         'address', 'message', 'transaction_total', 
-        'transaction_status', 'payment'
+        'transaction_status', 'payment_id'
     ];
 
     protected $hidden = [];
@@ -27,6 +27,10 @@ class Transaction extends Model
     public function details()
     {
         return $this->hasMany(TransactionDetail::class);
+    }
+
+    public function payment() {
+        return $this->belongsTo(Payment::class);
     }
 }
 

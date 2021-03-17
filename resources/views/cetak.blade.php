@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
 
     <!-- MY CSS -->
-    <title>INVOICE - {{ Auth::user()->name }} - {{ session('transaction_id') }}</title>
+    <title>INVOICE - {{ Auth::user()->name }} - {{ $transaction->id }}</title>
 </head>
 <body>
     <section id="shipping" class="mb-5 mt-3">
@@ -143,7 +143,7 @@
         </div>
     </section>
     <footer class="text-center">
-        <p class="fw-bold">{{ config('app.name')}} @2021</p>
+        <p class="fw-bold">{{ config('app.name')}} &copy {{ date('Y') }}</p>
     </footer>
 
     <script>

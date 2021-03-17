@@ -92,7 +92,7 @@ class LoginController extends Controller
         $profile->no_telp = $request->no_telp;
         $profile->save();
 
-        return back()->with('message', 'Berhasil Membuat Akun');
+        return redirect('/login')->with('message', 'Berhasil Membuat Akun');
     }
 
 

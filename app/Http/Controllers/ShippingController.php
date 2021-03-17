@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\Payment;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +14,9 @@ use Illuminate\Support\Facades\Auth;
 class ShippingController extends Controller
 {
     public function index(){
+        $payments = Payment::get();
         if (Cart::count() >= 1) {
-            return view('shipping');
+            return view('shipping', compact('payments'));
         } else {
             $msg = "Kamu belum menambahkan apapun ke keranjang!";
             return view('errors.404', compact('msg'));
@@ -36,7 +38,7 @@ class ShippingController extends Controller
                 'name' => 'required|max:255',
                 'no_telp' => 'required|numeric',
                 'address' => 'required',
-                'payment' => 'required',
+                'payment_id' => 'required',
             ], $msg);
 
             $id = Auth::user()->id;
@@ -49,7 +51,7 @@ class ShippingController extends Controller
             $transaction->no_telp = $request->no_telp;
             $transaction->address = $request->address;
             $transaction->message = $request->message;
-            $transaction->payment = $request->payment;
+            $transaction->payment_id = $request->payment_id;
             $transaction->message = $request->message ? $request->message : '' ;
             $transaction->transaction_total = str_replace('.', '', Cart::total());
             $transaction->transaction_status = "PENDING";
@@ -83,17 +85,17 @@ class ShippingController extends Controller
         $id = session('transaction_id');
         $transaction = Transaction::findOrFail($id);
         $transactionDetails = TransactionDetail::where('transaction_id', $id)
-            ->with('product')
-            ->get();
+        ->with('product')
+        ->get();
+        $payments = Payment::get();
 
         return view('checkout', compact(
             'transaction',
-            'transactionDetails',
+            'transactionDetails', 'payments'
         ));
     }
 
-    public function cetak() {
-        $id = session('transaction_id');
+    public function cetak($id) {
         $transaction = Transaction::findOrFail($id);
         $transactionDetails = TransactionDetail::where('transaction_id', $id)
             ->with('product')

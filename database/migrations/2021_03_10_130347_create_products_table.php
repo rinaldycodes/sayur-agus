@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration
             $table->text('slug')->nullable();
             $table->integer('price')->nullable();
             $table->integer('stock')->nullable();
-            $table->string('category')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('viewers')->nullable();
             $table->text('description', 255)->nullable();
             $table->timestamps();
         });

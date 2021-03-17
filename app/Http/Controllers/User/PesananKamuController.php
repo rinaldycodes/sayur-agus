@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\Payment;
 use Auth;
 
 class PesananKamuController extends Controller
@@ -13,7 +14,7 @@ class PesananKamuController extends Controller
     public function index() {
         // USER ID SEDANG LOGIN
         $userID = Auth::user()->id;
-        $transactions = Transaction::where('user_id', $userID)->get();
+        $transactions = Transaction::where('user_id', $userID)->latest()->get();
         $total = Transaction::where('user_id', $userID)->sum('transaction_total');
         return view('user.pesanan-kamu.index', compact('transactions', 'total'));
     }
@@ -23,6 +24,7 @@ class PesananKamuController extends Controller
         // USER ID SEDANG LOGIN
         $userID = Auth::user()->id;
         $transaction = Transaction::findOrFail($transaction_id);
+        $payments = Payment::get();
 
         // CEK USER ID SEDANG LOGIN DAN USER ID DI TRANSAKSI
         // JIKA SAMA MAKA TAMPILKAN
@@ -31,7 +33,7 @@ class PesananKamuController extends Controller
             ->get();
 
         if($userID == $transaction->user_id) {
-            return view('user.pesanan-kamu.show', compact('transaction', 'transactionDetails'));
+            return view('user.pesanan-kamu.show', compact('transaction', 'transactionDetails', 'payments'));
         }
         $transactions = Transaction::get();
     }

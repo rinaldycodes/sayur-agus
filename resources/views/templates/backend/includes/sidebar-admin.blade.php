@@ -121,6 +121,36 @@
         </div>
     </li>
 
+    <!-- Nav Item - Payment Collapse Menu -->
+    <li class="nav-item">
+        <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapsePayment"
+            aria-expanded="true"
+            aria-controls="collapsePayment"
+        >
+            <i class="fas fa-fw fa-dollar-sign"></i>
+            <span>Payment</span>
+        </a>
+        <div
+            id="collapsePayment"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+        >
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('payments.index') }}"
+                    >List
+                </a>
+                <a class="collapse-item" href="{{ route('payments.create') }}"
+                    >Create
+                </a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider" />
 

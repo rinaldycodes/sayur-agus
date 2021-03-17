@@ -63,12 +63,7 @@
                                 $key == 0 ? 'active' : ''
                             }} "
                         >
-                            <img src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables'
-
-
-
-
-
+                            <img src="{{ $product->galleries->count() ? url('/storage', $value->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables'
 
                             }}"" class="d-block w-100" alt="Online Shop" />
                         </div>

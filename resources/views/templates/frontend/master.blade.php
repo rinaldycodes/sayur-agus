@@ -22,6 +22,7 @@
   <body id="home">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+      <?php  $categories = App\Models\Category::get(); ?>
       <div class="container">
         <a class="navbar-brand" href="{{ url('/#home') }}">{{config('app.name')}}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +39,12 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/#product') }}">Product</a>
             </li>
+            @forelse ( $categories as $category)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/p', $category->slug) }}">{{$category->name}}</a>
+            </li>
+            @empty
+            @endforelse
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/#about') }}">About</a>
             </li>

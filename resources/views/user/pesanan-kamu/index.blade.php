@@ -53,14 +53,14 @@ Kamu' ) @section('content')
                             <p>
                                 <b
                                     class="text-uppercase"
-                                    >{{$transaction->payment}}</b
+                                    >{{$transaction->payment->payment}}</b
                                 >
                             </p>
                         </td>
                         <td
-                            class="{{$transaction->transaction_status == 'Pending' 
+                            class="{{$transaction->transaction_status == 'PENDING' 
                                 ? 'text-danger' 
-                                : ''}}"
+                                : 'text-success'}}"
                         >
                             {{$transaction->transaction_status }}
                         </td>

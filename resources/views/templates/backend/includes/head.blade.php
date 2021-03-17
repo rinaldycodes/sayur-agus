@@ -7,7 +7,7 @@
 <meta name="description" content="" />
 <meta name="author" content="Rinaldy Ramadhan" />
 
-<title>{{ config("app.name") }}- @yield('title')</title>
+<title>{{ config("app.name") }} - @yield('title')</title>
 
 <!-- Custom fonts for this template-->
 <link
