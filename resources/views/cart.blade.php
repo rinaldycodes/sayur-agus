@@ -29,7 +29,7 @@
                                     }}"
                                 />
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle" width="70%">
                                 <b>{{ $row->name }}</b>
                                 <p class="text-muted">
                                     <small>Price: Rp.{{ $row->price }}</small>
@@ -43,7 +43,7 @@
                             <form
                                 action="{{ url('/update-item', $row->rowId) }}"
                             >
-                                <td class="align-middle">
+                                <td class="align-middle text-end">
                                     <input
                                         type="number"
                                         value="{{ $row->qty }}"
@@ -88,7 +88,7 @@
                         @endforelse
 
                         <tr>
-                            <td colspan="3">
+                            <td colspan="2">
                                 <b class="fs-4"
                                     >Total: Rp.{{ Cart::total() }}</b
                                 >
@@ -98,7 +98,7 @@
                                 <a
                                     href="{{ url('/destroy-cart') }}"
                                     class="btn btn-sm btn-danger"
-                                    ><i class="bi bi-trash"></i> RESET CART</a
+                                    ><i class="bi bi-trash"></i> RESET</a
                                 >
                             </td>
                             @endif

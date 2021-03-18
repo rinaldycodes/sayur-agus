@@ -55,7 +55,7 @@
                                     >Ingin membuat website? Hubungi =>
                                 </small>
                                 <a
-                                    href="https://instagram.com/bangbre.haha"
+                                    href="https://instagram.com/tyaga.codes"
                                     target="_blank"
                                     class=""
                                     >TYAGA</a

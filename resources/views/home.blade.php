@@ -4,16 +4,7 @@
 <section class="jumbotron mb-3 bg-success">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6 text-white">
-                <!-- <h1 class="fs-2 text-center">{{ config("app.name") }}</h1> -->
-                <p class="lead">
-                    Mau belanja tapi males keluar? <br />
-                    <b class="fs-1">{{ config("app.name") }}</b> solusinya!
-                    pilih barangnya, pesan , dan bayar. Pesanan kamu, kami
-                    antarkan sampai rumah.
-                </p>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mb-5 d-md-block d-none">
                 <!-- Carousel -->
                 <div
                     id="carouselExampleIndicators"
@@ -91,6 +82,15 @@
                     </button>
                 </div>
                 <!-- /Carousel -->
+            </div>
+            <div class="col-md-6 text-white">
+                <!-- <h1 class="fs-2 text-center">{{ config("app.name") }}</h1> -->
+                <p class="lead">
+                    Mau belanja tapi males keluar? <br />
+                    <b class="fs-1">{{ config("app.name") }}</b> solusinya!
+                    pilih barangnya, pesan , dan bayar. Pesanan kamu, kami
+                    antarkan sampai rumah.
+                </p>
             </div>
         </div>
     </div>

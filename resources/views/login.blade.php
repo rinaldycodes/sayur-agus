@@ -89,7 +89,7 @@
                         <a
                             class="text-dark fw-bold"
                             target="_blank"
-                            href="https://instagram.com/bangbre.haha"
+                            href="https://instagram.com/tyaga.codes"
                             >т у α g α</a
                         >
                     </p>

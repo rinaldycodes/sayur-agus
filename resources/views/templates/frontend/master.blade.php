@@ -87,28 +87,30 @@
         </div>
       </div>
 
-      <!-- ///////// FLASH DATA ///////// -->
-      <div class="message text-center">
-        @if (session('message'))
-          <div class="alert alert-info text-dark">{{ session('message') }}</div>
-        @endif
-      </div>
+    
     </nav>
     <!-- /NAVBAR -->
-
+    
+    <!-- ///////// FLASH DATA ///////// -->
+    @if (session('message'))
+    <div class="alert alert-info alert-dismissible fade show fixed-bottom" role="alert">
+      {{ session('message') }}.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     @yield('content')
 
     <section id="contact" class="bg-success pb-5">
-      <div class="container">
+      <div class="container text-md-center">
         <div class="row text-white">
-          <div class="col-md-6">
+          <div class="col-md-6 mb-5">
             <h2 class="fs-3">Get In Touch</h2>
             <ul>
               <li>Bekasi, Indonesia</li>
               <li>0882-1234-4567</li>
             </ul>
           </div>
-          <div class="col-md-6 text-end">
+          <div class="col-md-6 mb-5">
             <h2 class="fs-3">Follow Us</h2>
             <ul>
               <li><a href="http://instagram.com" class="text-white" target="_blank" rel="noopener noreferrer">Instagram</a></li>
@@ -123,7 +125,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col">
-            <p>Created with <i class="bi bi-heart-fill text-danger"></i> by <a class="text-white fw-bold" target="_blank" href="https://instagram.com/bangbre.haha">т у α g α</a></p>
+            <p>Created with <i class="bi bi-heart-fill text-danger"></i> by <a class="text-white fw-bold" target="_blank" href="https://instagram.com/tyaga.codes">т у α g α</a></p>
           </div>
         </div>
       </div>

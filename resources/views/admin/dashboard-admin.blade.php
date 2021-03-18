@@ -122,7 +122,7 @@
                     <a
                         target="_blank"
                         rel="nofollow"
-                        href="https://instagram.com/bangbre.haha"
+                        href="https://instagram.com/tyaga.codes"
                         >Developer &rarr;</a
                     >
                 </div>

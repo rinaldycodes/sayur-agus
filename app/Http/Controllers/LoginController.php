@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 Use App\Models\User;
 Use App\Models\Profile;
 
@@ -86,6 +87,8 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->name = $request->name;
         $user->save();
+
+        event(new Registered($user));
 
         $profile = new Profile;
         $profile->user_id = $user->id;

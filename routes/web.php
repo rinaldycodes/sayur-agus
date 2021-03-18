@@ -16,6 +16,10 @@ use App\Http\Controllers\User\DashboardUserController;
 use App\Http\Controllers\User\PesananKamuController;
 use App\Http\Controllers\User\PembayaranController;
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +34,25 @@ use App\Http\Controllers\User\PembayaranController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
 
 Route::get('/', [PageController::class, 'home']);
 Route::get('/product', [PageController::class, 'product']);
@@ -71,7 +94,7 @@ Route::middleware('auth.basic')
 
 ////////////////////////// USER AREA //////////////////////////////////
 Route::prefix('user')
-    ->middleware('auth.basic')
+    ->middleware('auth.basic', 'verified')
     ->group( function() {
         Route::get('/', [DashboardUserController::class, 'index']);
         Route::get('/pesanan-kamu', [PesananKamuController::class, 'index']);
@@ -84,7 +107,7 @@ Route::prefix('user')
 
 ////////////////////////// ADMIN AREA //////////////////////////////////
 Route::prefix('admin')
-    ->middleware('auth.basic','admin')
+    ->middleware('verified','auth.basic','admin', )
     ->group( function() {
     Route::get('/', [DashboardAdminController::class, 'index']);
     Route::resource('/products', ProductController::class);

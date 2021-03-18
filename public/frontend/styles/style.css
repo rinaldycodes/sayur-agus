@@ -110,7 +110,6 @@ section .detail-product {
 
 /* CART */
 #cart {
-    height: 120vh;
 }
 #cart img {
     margin: 10px auto;
