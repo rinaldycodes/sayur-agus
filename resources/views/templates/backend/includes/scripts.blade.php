@@ -13,6 +13,7 @@
 <script src="{{URL::to('backend/sb-admin-2')}}/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
+<script src="{{URL::to('frontend/scripts/scripts.js')}}"></script>
 
 <script>
     // datatabel

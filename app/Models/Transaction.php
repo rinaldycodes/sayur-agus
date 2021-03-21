@@ -13,7 +13,7 @@ class Transaction extends Model
     protected $fillable = [
         'user_id', 'receiver_name', 'no_telp', 
         'address', 'message', 'transaction_total', 
-        'transaction_status', 'payment_id'
+        'transaction_status', 'payment_id', 'ongkir'
     ];
 
     protected $hidden = [];

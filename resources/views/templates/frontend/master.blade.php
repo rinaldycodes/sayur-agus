@@ -36,15 +36,18 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/#for-you') }}">For You <i class="bi bi-heart-fill"></i></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/#product') }}">Product</a>
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Category
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @forelse ( $categories as $category)
+                <li><a class="dropdown-item" href="{{ url('/p', $category->slug) }}">{{$category->name}}</a></li>
+                @empty
+                @endforelse
+              </ul>
             </li>
-            @forelse ( $categories as $category)
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/p', $category->slug) }}">{{$category->name}}</a>
-            </li>
-            @empty
-            @endforelse
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/#about') }}">About</a>
             </li>
@@ -135,5 +138,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
     <!-- BOOTSTRAP -->
+
+    <script src="{{ URL::to('frontend/scripts/scripts.js') }}"></script>
   </body>
 </html>

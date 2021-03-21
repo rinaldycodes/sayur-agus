@@ -84,6 +84,16 @@
 
                         <tr>
                             <td colspan="2">
+                                <p class="fs-5" >Ongkir</p>
+                            </td>
+                            
+                            <td class="align-middle text-end">
+                                <p ><bold>Rp.{{ number_format($transaction->ongkir, 0,'.','.') }}</bold></p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
                                 <p class="fs-5" >Total</p>
                             </td>
                             
@@ -114,7 +124,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <a href="{{url('/user/pesanan-kamu')}}" class="btn btn-secondary btn-md ">RIWAYAT PESANAN KAMU</a>
+                        <a href="{{url('/user/pesanan-kamu')}}" class="btn btn-secondary btn-md ">RIWAYAT PESANAN </a>
                     </div>
                     <div class="col text-end">
                         <a href="{{route('cetak', $transaction->id )}}" class="btn-success btn-md btn"> <i class="bi bi-printer-fill"></i> CETAK</a>

@@ -93,27 +93,39 @@
                             >
                         </td>
                         <td>
-                            <div class="row">
-                                <div class="col-sm mb-1">
-                                    <a
-                                        href="{{route('transactions.edit', $transaction->id)}}"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Edit"
-                                        class="btn btn-sm btn-success"
-                                        ><i class="fas fa-edit"></i
-                                    ></a>
-                                </div>
-                                <div class="col-sm mb-1">
-                                    <a
-                                        href="{{route('transactions.show', $transaction->id)}}"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Detail"
-                                        class="btn btn-sm btn-info"
-                                        ><i class="fas fa-eye"></i
-                                    ></a>
-                                </div>
+                            <div class="row d-flex justify-content-center">
+                                <a
+                                    href="{{route('transactions.edit', $transaction->id)}}"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Edit"
+                                    class="btn btn-sm m-1 btn-success"
+                                    ><i class="fas fa-edit"></i
+                                ></a>
+                                <a
+                                    href="{{route('transactions.show', $transaction->id)}}"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Detail"
+                                    class="btn btn-sm m-1 btn-info"
+                                    ><i class="fas fa-eye"></i
+                                ></a>
+                                <form
+                                    action="{{route('transactions.destroy', $transaction->id)}}"
+                                    method="POST"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Delete"
+                                >
+                                    @csrf @method('DELETE')
+
+                                    <button
+                                        class="btn btn-sm m-1 btn-danger"
+                                        type="submit"
+                                    >
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>

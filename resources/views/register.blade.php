@@ -27,6 +27,7 @@
                     <div class="header mb-5">
                         <h1 class="text-center h3 mb-3 fw-normal">Register</h1>
                     </div>
+
                     <div class="mb-3">
                         <label for="name" class="visually-show mb-2"
                             >Nama Lengkap</label
@@ -41,10 +42,28 @@
                             autofocus=""
                             name="name"
                         />
-                        @error('email')
+                        @error('name')
                         <div class="alert alert-danger">
                             {{ $message }}
                         </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputNoTelp" class="visually-show mb-2"
+                            >No. Telp / WA</label
+                        >
+                        <input
+                            value="{{ old('no_telp') }}"
+                            type="text"
+                            id="inputNoTelp"
+                            name="no_telp"
+                            placeholder="Masuk No. Telp / WA"
+                            required=""
+                            class="form-control @error('no_telp') is-invalid @enderror"
+                        />
+                        @error('no_telp')
+                        {{ $message }}
                         @enderror
                     </div>
 
@@ -82,24 +101,6 @@
                             class="form-control @error('password') is-invalid @enderror"
                         />
                         @error('password')
-                        {{ $message }}
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="inputNoTelp" class="visually-show mb-2"
-                            >No. Telp / WA</label
-                        >
-                        <input
-                            value="{{ old('no_telp') }}"
-                            type="text"
-                            id="inputNoTelp"
-                            name="no_telp"
-                            placeholder="Masuk No. Telp / WA"
-                            required=""
-                            class="form-control @error('no_telp') is-invalid @enderror"
-                        />
-                        @error('no_telp')
                         {{ $message }}
                         @enderror
                     </div>

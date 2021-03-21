@@ -9,13 +9,13 @@ use App\Models\Category;
 class PageController extends Controller
 {
     public function home() {
-        $products = Product::with('galleries')->inRandomOrder()->limit(4)->latest()->get();
+        $products = Product::with('galleries')->inRandomOrder()->limit(9)->latest()->get();
 
         return view('home', compact('products'));
     }
 
     public function product() {
-        $products = Product::with('galleries')->latest()->get();
+        $products = Product::with('galleries')->latest()->paginate(18);
         return view('product', compact(
             'products',
         ));
@@ -25,7 +25,7 @@ class PageController extends Controller
         $category = Category::where('slug', $slug_category)->firstOrFail();
         $products = Product::where('category_id', $category->id)
             ->with('galleries')
-            ->get();
+            ->paginate(18);
         return view('product_category', compact(
             'products', 'category',
         ));

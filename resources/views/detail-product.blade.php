@@ -65,6 +65,10 @@
                         >
                             <img src="{{ $product->galleries->count() ? url('/storage', $value->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables'
 
+
+
+
+
                             }}"" class="d-block w-100" alt="Online Shop" />
                         </div>
                         @endforeach
@@ -97,10 +101,12 @@
                 <!-- /Carousel -->
             </div>
             <div class="col-md-6">
+                <div class="card-header bg-success"></div>
                 <!-- FORM HIDDEN -->
                 <form
                     action="{{ url('/add-item', $product->slug) }}"
                     method="post"
+                    class="card-body shadow"
                 >
                     @csrf
                     <input

@@ -28,7 +28,7 @@
     <hr class="sidebar-divider" />
 
     <!-- Heading -->
-    <div class="sidebar-heading">Interface</div>
+    <div class="sidebar-heading">Me</div>
 
     <!-- Nav Item - Product Collapse Menu -->
     <li class="nav-item">
@@ -57,6 +57,39 @@
                     class="collapse-item"
                     href="{{ url('/profile/change-password') }}"
                     >Change Password</a
+                >
+            </div>
+        </div>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">Master</div>
+
+    <!-- Nav Item - Users Collapse Menu -->
+    <li class="nav-item">
+        <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseUsers"
+            aria-expanded="true"
+            aria-controls="collapseUsers"
+        >
+            <i class="fas fa-fw fa-users"></i>
+            <span>Users</span>
+        </a>
+        <div
+            id="collapseUsers"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+        >
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('users.index') }}"
+                    >List</a
+                >
+                <a class="collapse-item" href="{{ route('users.create') }}"
+                    >Tambah</a
                 >
             </div>
         </div>
@@ -116,6 +149,9 @@
                     class="collapse-item"
                     href="{{ route('transactions.index') }}"
                     >List Transaksi</a
+                >
+                <a class="collapse-item" href="{{ route('laporan.index') }}"
+                    >Laporan</a
                 >
             </div>
         </div>

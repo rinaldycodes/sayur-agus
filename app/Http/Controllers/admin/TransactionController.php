@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
-use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
+use App\Models\Payment;
 
 
 class TransactionController extends Controller
@@ -71,10 +73,11 @@ class TransactionController extends Controller
         $transactionDetails = TransactionDetail::where('transaction_id', $id)
             ->get();
         ;
+        $payments = Payment::get();
 
         return view('admin.transactions.show', compact(
             'transaction',
-            'transactionDetails',
+            'transactionDetails', 'payments'
         ));
     }
 
@@ -116,5 +119,29 @@ class TransactionController extends Controller
         $transaction->delete();
 
         return redirect()->route('transactions.index')->with('message', 'Berhasil Menghapus Data');
+    }
+
+    public function laporan()
+    {
+        return view('admin.transactions.laporan');
+    }
+
+    public function search(Request $request) 
+    {
+        $date1 = $request->date1;
+        $date2 = $request->date2;
+        
+        $transactions = Transaction::whereBetween('created_at', [$date1, $date2])->get();
+        $total = Transaction::whereBetween('created_at', [$date1, $date2])->sum('transaction_total');
+        $totalSuccess = Transaction::whereBetween('created_at', [$date1, $date2])->where('transaction_status', 'success')->sum('transaction_total');
+        $countAll = Transaction::all()->count();
+
+        // dd($request->has('search'));
+        if ($request->has('search')) {
+            return view('admin.transactions.search', compact('transactions', 'totalSuccess', 'total', 'date1', 'date2'));
+        } else if ($request->has('print')) {
+            return view('admin.transactions.print', compact('transactions', 'totalSuccess', 'total', 'date1', 'date2'));
+        }
+
     }
 }

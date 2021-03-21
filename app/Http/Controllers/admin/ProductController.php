@@ -50,7 +50,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products|max:255',
             'price' => 'required',
             'stock' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
             'description' => 'required',
         ], $msg);
         
@@ -67,7 +67,7 @@ class ProductController extends Controller
         $product->price = $price;
 
         $product->stock = $request->stock;
-        $product->category = $request->category;
+        $product->category_id = $request->category_id;
         $product->description = $request->description;
         $product->save();
 
@@ -83,8 +83,8 @@ class ProductController extends Controller
     public function edit($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
   

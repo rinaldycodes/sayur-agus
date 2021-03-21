@@ -41,6 +41,10 @@
             </p>
             @endforelse
         </div>
+
+        <div class="d-flex justify-content-center pb-5">
+            {{ $products->links() }}
+        </div>
     </div>
 </section>
 <!-- /PRODUCT -->

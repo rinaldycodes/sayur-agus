@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\Payment;
 use Cart;
-use Illuminate\Support\Facades\Auth;
 
 
 class ShippingController extends Controller
@@ -30,14 +31,16 @@ class ShippingController extends Controller
                 'name.required' => "Email tidak boleh kosong",
                 'no_telp.required' => "No Telp / WA tidak boleh kosong",
                 'numeric' => "Harus berkarakter angka",
+                'no_telp.min'=>'Nomor telp harus :min karakter ',
                 'address.required' => "Alamat tidak boleh kosong",
                 'payment.required' => "Pilih Payment",
             ];
     
             $validated = $request->validate([
                 'name' => 'required|max:255',
-                'no_telp' => 'required|numeric',
+                'no_telp' => 'required|numeric|min:11',
                 'address' => 'required',
+                'pengiriman' => 'required',
                 'payment_id' => 'required',
             ], $msg);
 
@@ -53,7 +56,8 @@ class ShippingController extends Controller
             $transaction->message = $request->message;
             $transaction->payment_id = $request->payment_id;
             $transaction->message = $request->message ? $request->message : '' ;
-            $transaction->transaction_total = str_replace('.', '', Cart::total());
+            $transaction->ongkir = $request->ongkir;
+            $transaction->transaction_total = $request->total;
             $transaction->transaction_status = "PENDING";
             $transaction->save();
     

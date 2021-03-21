@@ -54,7 +54,6 @@ section .detail-product {
 /* product */
 
 #product {
-    background-color: #198754;
 }
 
 #product .card:hover .card-body {

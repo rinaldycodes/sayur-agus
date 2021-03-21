@@ -29,7 +29,7 @@
                         </p>
                         <ul>
                             @forelse ( $transactions as $transaction)
-                            <li>
+                            <li class="mb-3">
                                 <a
                                     href="{{route('pesanan-kamu.show', $transaction->id)}}"
                                     class="btn btn-danger btn-md"
@@ -50,7 +50,7 @@
                         target="_blank"
                         rel="nofollow"
                         href="https://instagram.com/tyaga.codes"
-                        >Developer
+                        >Customer Service
                     </a>
                 </div>
             </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\PaymentController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
@@ -58,7 +59,7 @@ Route::get('/', [PageController::class, 'home']);
 Route::get('/product', [PageController::class, 'product']);
 Route::get('/p/{slug}', [PageController::class, 'category_page']);
 Route::get('/product/{slug}', [PageController::class, 'detail_product']);
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/auth', [LoginController::class, 'processLogin']);
 Route::get('/register', [LoginController::class, 'register']);
 Route::post('/process-register', [LoginController::class, 'processRegister']);
@@ -110,7 +111,10 @@ Route::prefix('admin')
     ->middleware('verified','auth.basic','admin', )
     ->group( function() {
     Route::get('/', [DashboardAdminController::class, 'index']);
+    Route::resource('/users', UserController::class);
     Route::resource('/products', ProductController::class);
+    Route::get('/transactions/laporan', [TransactionController::class, 'laporan'])->name('laporan.index');
+    Route::post('/transactions/laporan/1', [TransactionController::class, 'search'])->name('laporan.true');
     Route::resource('/transactions', TransactionController::class);
     Route::get('/galleries/delete/{id}', [GalleryController::class, 'delete']);
     Route::resource('/galleries', GalleryController::class);

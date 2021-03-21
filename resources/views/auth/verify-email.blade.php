@@ -13,7 +13,7 @@
             crossorigin="anonymous"
         />
 
-        <title>Hello, world!</title>
+        <title>Hello, {{ Auth::user()->name}}!</title>
     </head>
     <body>
         <div class="container" style="padding-top: 5cm">

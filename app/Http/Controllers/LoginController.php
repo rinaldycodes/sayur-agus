@@ -77,7 +77,7 @@ class LoginController extends Controller
         ];
 
         $validated = $request->validate([
-            'email' => 'required|max:255',
+            'email' => 'required|unique:users,email|max:255',
             'password' => 'required',
             'no_telp' => 'required|min:11|numeric',
         ], $msg);

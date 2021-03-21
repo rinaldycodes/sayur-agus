@@ -102,6 +102,16 @@
 
                             <tr>
                                 <td colspan="2">
+                                    <p class="fs-5" >Ongkir</p>
+                                </td>
+                                
+                                <td class="align-middle text-end">
+                                    <p><b>Rp.{{ number_format($transaction->ongkir, 0,'.','.') }}</b></p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
                                     <p class="fs-5" >Total</p>
                                 </td>
                                 

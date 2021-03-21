@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-5">
                         <label for="address">Alamat <small class="text-danger">*</small></label>
-                        <textarea name="address" id="address" cols="15" rows="5" class="form-control @error('address') is-invalid @enderror"></textarea>
+                        <textarea name="address" id="address" cols="15" rows="5" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                         @error('address')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -90,6 +90,39 @@
                             <td colspan="3"><h6>No Data</h6></td>
                         </tr>
                         @endforelse
+                        <tr>
+                            <td colspan="2">
+                                <p class="fs-5" >Subtotal</p>
+                                <input type="number" value="{{ str_replace('.','', Cart::total()) }}" id="subtotal" hidden>
+                            </td>
+                            
+                            <td class="align-middle text-end">
+                                <p class="fs-5"><strong>Rp.{{ Cart::total() }}</strong></p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="1">
+                                <p class="fs-5" >Pengiriman Ke</p>
+                            </td>
+                            
+                            <td class="align-middle text-end">
+                                <select name="pengiriman" id="location" onchange="myShipping(this)">
+                                    <option value="" data-price="0">Pilih</option>
+                                    <option value="Bekasi" data-price="10000">Bekasi</option>
+                                    <option value="Tambun" data-price="5000">Tambun</option>
+                                </select>
+                            </td>
+                            <td class="align-middle text-end">
+                                <p id="ongkirText"></p>
+                                @error('payment_id')
+                                <div class="text-center text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                                <input type="text" id="ongkirInput" name="ongkir" hidden >
+                            </td>
+                        </tr>
 
                         <tr>
                             <td colspan="2">
@@ -97,7 +130,8 @@
                             </td>
                             
                             <td class="align-middle text-end">
-                                <p class="fs-5"><strong>Rp.{{ Cart::total() }}</strong></p>
+                                <p class="fs-5"><strong id="totalText"></strong></p>
+                                <input type="text" value="" id="totalInput" name="total" hidden >
                             </td>
                         </tr>
                         <tr>
@@ -136,4 +170,6 @@
     </div>
     </div>
 </section>
+
+
 @endsection

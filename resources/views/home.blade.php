@@ -4,7 +4,7 @@
 <section class="jumbotron mb-3 bg-success">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6 mb-5 d-md-block d-none">
+            <div class="col-md-6 mb-5 ">
                 <!-- Carousel -->
                 <div
                     id="carouselExampleIndicators"
@@ -83,7 +83,7 @@
                 </div>
                 <!-- /Carousel -->
             </div>
-            <div class="col-md-6 text-white">
+            <div class="col-md-6 text-white d-md-block d-none">
                 <!-- <h1 class="fs-2 text-center">{{ config("app.name") }}</h1> -->
                 <p class="lead">
                     Mau belanja tapi males keluar? <br />
@@ -115,61 +115,14 @@
                 </h2>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3">
             @forelse ($products as $product)
-            <div class="col-md-4 col-lg-3 mb-3">
+            <div class="col-md-3 mb-3">
                 <div class="card">
                     <a href="{{ url('/product', $product->slug)}}">
                         <div class="card-body text-center">
                             <img
                                 src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/200x200/?'.$product->name }}"
-                                class=""
-                                alt="{{ $product->name }} {{
-                                    config('app.name')
-                                }}"
-                            />
-                            <p class="title-product text-muted">
-                                {{$product->name}}
-                            </p>
-                            <p class="price-product fw-bold">
-                                Rp.{{ number_format($product->price,0,'.','.')}}
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            @empty
-            <p>Tidak ada Produk</p>
-            @endforelse
-        </div>
-    </div>
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-            fill="#198754"
-            fill-opacity="1"
-            d="M0,192L24,186.7C48,181,96,171,144,176C192,181,240,203,288,181.3C336,160,384,96,432,106.7C480,117,528,203,576,245.3C624,288,672,288,720,240C768,192,816,96,864,74.7C912,53,960,107,1008,117.3C1056,128,1104,96,1152,122.7C1200,149,1248,235,1296,240C1344,245,1392,171,1416,133.3L1440,96L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"
-        ></path>
-    </svg>
-</section>
-<!-- /FOR YOU -->
-
-<!-- PRODUCT -->
-<section id="product" class="bg-success">
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col">
-                <h2 class="fs-3 text-center text-white">PRODUCT</h2>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            @forelse ($products as $product)
-            <div class="col-md-4 col-lg-3 mb-3">
-                <div class="card">
-                    <a href="{{ url('/product', $product->slug)}}">
-                        <div class="card-body text-center">
-                            <img
-                                src="{{ $product->galleries->count() ? url('/storage', $product->galleries->first()->img)  : 'https://source.unsplash.com/100x100/?sayur,vegetables' }}"
                                 class=""
                                 alt="{{ $product->name }} {{
                                     config('app.name')
@@ -200,16 +153,16 @@
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
-            fill="#ffffff"
+            fill="#198754"
             fill-opacity="1"
-            d="M0,192L48,213.3C96,235,192,277,288,245.3C384,213,480,107,576,106.7C672,107,768,213,864,261.3C960,309,1056,299,1152,256C1248,213,1344,139,1392,101.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            d="M0,192L24,186.7C48,181,96,171,144,176C192,181,240,203,288,181.3C336,160,384,96,432,106.7C480,117,528,203,576,245.3C624,288,672,288,720,240C768,192,816,96,864,74.7C912,53,960,107,1008,117.3C1056,128,1104,96,1152,122.7C1200,149,1248,235,1296,240C1344,245,1392,171,1416,133.3L1440,96L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"
         ></path>
     </svg>
 </section>
-<!-- /PRODUCT -->
+<!-- /FOR YOU -->
 
-<!-- ABOUT -->
-<section id="about">
+<!-- About -->
+<section id="about" class="bg-success text-white">
     <div class="container">
         <div class="row mb-3">
             <div class="col">
@@ -234,6 +187,103 @@
             </div>
         </div>
     </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+            fill="#ffffff"
+            fill-opacity="1"
+            d="M0,192L48,213.3C96,235,192,277,288,245.3C384,213,480,107,576,106.7C672,107,768,213,864,261.3C960,309,1056,299,1152,256C1248,213,1344,139,1392,101.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+    </svg>
+</section>
+<!-- /About -->
+
+<!-- BANTUAN -->
+<section id="bantuan">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-">
+                <div class="card">
+                    <div class="card-header bg-success text-white text-center">
+                        <h6>WhatsApp Customer Service</h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center fs-3 mb-3">
+                            <a
+                                class="text-center fs-3 text-success"
+                                href="https://api.whatsapp.com/send/?phone=6288299862278&text=Halo+Kita%21+Belanja%21+Saya+ingin+belanja%2C+gimana+caranya%3F&app_absent=0"
+                            >
+                                0882-9986-2278
+                            </a>
+                        </p>
+                        <div class="help mb-5">
+                            <details>
+                                <summary>
+                                    Bagaimana melakukan pemesanan ke {{ config('app.name') }} ?
+                                </summary>
+                                <p >
+                                    <ol class="text-muted">
+                                        <li>Pilih produk yang ingin dipesan</li>
+                                        <li>Isi form pengiriman </li>
+                                        <li>Pilih pengiriman daerah anda / lokasi anda </li>
+                                        <li>Pilih pembayaran / payment </li>
+                                        <li>Lalu lakukan pembayaran</li>
+                                        <li>Dan melakukan konfirmasi pembayaran ke {{ config('app.name') }}</li>
+                                    </ol> 
+                                </p>
+                            </details>
+                        </div>
+                        <div class="help mb-5">
+                            <details>
+                                <summary>
+                                    Bagaimana melakukan pembayaran bank transfer ke {{ config('app.name') }} ?
+                                </summary>
+                                <p class="text-muted card-body">
+                                    Lakukan pembayaran bank transfer ke salah satu rekening kami:
+                                    <ol>
+                                        <li>Bank BCA
+                                            <p>A/n {{ config('app.name') }} <br>
+                                                No Rekening: 123-456-789
+                                            </p>
+                                        </li>
+                                        <li>Bank BRI
+                                            <p>A/n {{ config('app.name') }} <br>
+                                                No Rekening: 123-456-789
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </p>
+                            </details>
+                        </div>
+                        <div class="help mb-5">
+                            <details>
+                                <summary>
+                                    Bagaimana melakukan konfirmasi pembayaran ke {{ config('app.name') }} ?
+                                </summary>
+                                <p  class="text-muted card-body" >
+                                       Selesaikan pembayaran Anda dengan mengirim bukti transfer ke CS (Customer Service) {{ config('app.name') }}.
+                                </p>
+                            </details>
+                        </div>
+                        <div class="help mb-5">
+                            <details>
+                                <summary>
+                                    Kapan pengiriman pesanan saya dilakukan {{ config('app.name') }} ?
+                                </summary>
+                                <p class="text-muted card-body" >
+                                    Pengiriman dilakukan setelah anda telah melakukan konfirmasi pembayaran 
+                                    dan {{ config('app.name') }} akan memverifikasi pembayaran
+                                </p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
             fill="#198754"
@@ -242,5 +292,5 @@
         ></path>
     </svg>
 </section>
-<!-- /ABOUT -->
+<!-- /BANTUAN -->
 @endsection
