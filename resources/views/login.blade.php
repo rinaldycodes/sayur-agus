@@ -23,7 +23,7 @@
                     class="card card-body shadow p-5"
                 >
                     @csrf
-                    <div class="header mb-5">
+                    <div class="header mb-3">
                         <h1 class="text-center h3 mb-3 fw-normal">Login</h1>
                     </div>
                     <div class="mb-3">
@@ -44,9 +44,11 @@
                             {{ $message }}
                         </div>
                         @enderror
-                        <p class="small text-muted">We dont share your email</p>
+                        <small class="small text-muted mt-3">
+                            We dont share your email
+                        </small>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <label for="inputPassword" class="visually-show mb-2"
                             >Password</label
                         >

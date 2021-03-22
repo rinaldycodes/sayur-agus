@@ -57,9 +57,9 @@
                         <button
                             name="print"
                             type="submit"
-                            class="form-control btn btn-success"
+                            class="form-control btn btn-primary"
                         >
-                            <i class="fa fa-search"></i> Print
+                            <i class="fa fa-print"></i> Print
                         </button>
                     </div>
                 </div>
@@ -160,20 +160,6 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="my-3">
-                        <label for="">Print</label>
-                        <button
-                            name="print"
-                            type="submit"
-                            class="form-control btn btn-success"
-                        >
-                            <i class="fa fa-search"></i> Print
-                        </button>
                     </div>
                 </div>
             </div>

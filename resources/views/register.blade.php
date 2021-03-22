@@ -24,7 +24,7 @@
                 >
                     @csrf
 
-                    <div class="header mb-5">
+                    <div class="header mb-3">
                         <h1 class="text-center h3 mb-3 fw-normal">Register</h1>
                     </div>
 
@@ -88,7 +88,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <label for="inputPassword" class="visually-show mb-2"
                             >Password</label
                         >

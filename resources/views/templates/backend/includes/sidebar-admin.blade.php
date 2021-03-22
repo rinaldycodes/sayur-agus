@@ -167,7 +167,7 @@
             aria-expanded="true"
             aria-controls="collapsePayment"
         >
-            <i class="fas fa-fw fa-dollar-sign"></i>
+            <i class="fas fa fa-credit-card"></i>
             <span>Payment</span>
         </a>
         <div
