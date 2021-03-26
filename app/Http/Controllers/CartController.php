@@ -30,7 +30,7 @@ class CartController extends Controller
                 ],
         ]);
 
-        return redirect('/cart');
+        return back()->with('message', 'Berhasil Menambah Cart');
     }
 
     public function update(Request $request, $rowId) {

@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\PaymentController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
@@ -35,6 +36,9 @@ use Illuminate\Http\Request;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('optimize', function () { \Artisan::call('optimize:clear'); dd("Web is OPTIMIZED"); });
+Route::get('backup', function () { \Artisan::call('backup:run'); dd("Backup Web Completed"); });
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -120,6 +124,7 @@ Route::prefix('admin')
     Route::resource('/galleries', GalleryController::class);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/payments', PaymentController::class);
+    Route::resource('/sliders', SliderController::class);
     
 });
 ////////////////////////// ADMIN AREA //////////////////////////////////

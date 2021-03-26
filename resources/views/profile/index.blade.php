@@ -21,7 +21,7 @@
                 <div class="col-md-6">
                     <img
                         src="{{ $user->profile 
-                            ? url('/storage', $user->profile->photo)  
+                            ? url('/storage').'/'.$user->profile->photo
                             : 'https://bit.ly/3qOrh8Q' }}"
                         class="img-prof rounded-circle"
                         alt="Harap Klik edit untuk ganti foto"

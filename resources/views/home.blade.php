@@ -12,49 +12,30 @@
                     data-bs-ride="carousel"
                 >
                     <div class="carousel-indicators">
+                        @forelse ($sliders as $key => $value)
                         <button
                             type="button"
                             data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="0"
-                            class="active"
+                            data-bs-slide-to="{{ $key }}"
+                            class="{{ $key==0 ? 'active' : '' }}"
                             aria-current="true"
-                            aria-label="Slide 1"
+                            aria-label="{{ $value->name }}"
                         ></button>
-                        <button
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="1"
-                            aria-label="Slide 2"
-                        ></button>
-                        <button
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="2"
-                            aria-label="Slide 3"
-                        ></button>
+                        @empty
+                        <p class="text-center">Tidak ada slide</p>
+                        @endforelse
+                       
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img
-                                src="https://source.unsplash.com/daily"
-                                class="d-block w-100"
-                                alt="Online Shop"
+                        @foreach ($sliders as $key => $value )
+                        <div class="carousel-item {{ $key==0 ? 'active' : '' }}">
+                            <img 
+                                src="{{ url('storage', $value->img) }}"
+                                class="rounded d-block w-100"
+                                alt="Foto {{ config('app.name') }}"
                             />
                         </div>
-                        <div class="carousel-item">
-                            <img
-                                src="https://source.unsplash.com/daily"
-                                class="d-block w-100"
-                                alt="Online Shop"
-                            />
-                        </div>
-                        <div class="carousel-item">
-                            <img
-                                src="https://source.unsplash.com/daily"
-                                class="d-block w-100"
-                                alt="Online Shop"
-                            />
-                        </div>
+                        @endforeach
                     </div>
                     <button
                         class="carousel-control-prev"
@@ -173,8 +154,8 @@
             <div class="col-md-4 mb-3">
                 <p>
                     <b class="fs-2">{{ config("app.name") }}</b> bergerak di
-                    bidang jasa dan toko online, titip belanja sayur ? belanja
-                    makanan ? atau antar dokumen ? ya kami melakukannya .
+                    bidang jasa dan toko online, belanja
+                    makanan ? belanja pakaian ? ya di {{ config("app.name") }} .
                 </p>
             </div>
             <div class="col-md-4">

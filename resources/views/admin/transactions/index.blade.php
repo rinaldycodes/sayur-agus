@@ -129,14 +129,7 @@
                             </div>
                         </td>
                     </tr>
-                    @empty
-                    <p>
-                        Tidak ada transaksi
-                        <a href="{{ route('transactions.create') }}"
-                            >Buat produk</a
-                        >
-                    </p>
-                    @endforelse
+                    @empty @endforelse
                 </tbody>
                 <tr class="text-center">
                     <td colspan="4">

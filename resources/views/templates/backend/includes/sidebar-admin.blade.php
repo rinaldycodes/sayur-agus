@@ -27,9 +27,6 @@
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
-    <!-- Heading -->
-    <div class="sidebar-heading">Me</div>
-
     <!-- Nav Item - Product Collapse Menu -->
     <li class="nav-item">
         <a
@@ -62,9 +59,6 @@
         </div>
     </li>
 
-    <!-- Heading -->
-    <div class="sidebar-heading">Master</div>
-
     <!-- Nav Item - Users Collapse Menu -->
     <li class="nav-item">
         <a
@@ -95,6 +89,36 @@
         </div>
     </li>
 
+    <!-- Nav Item - Sliders Collapse Menu -->
+    <li class="nav-item">
+        <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseSlider"
+            aria-expanded="true"
+            aria-controls="collapseSlider"
+        >
+            <i class="fas fa-fw fa-image"></i>
+            <span>Slider</span>
+        </a>
+        <div
+            id="collapseSlider"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+        >
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('sliders.index') }}"
+                    >List Slider</a
+                >
+                <a class="collapse-item" href="{{ route('sliders.create') }}"
+                    >Tambah Slider Baru</a
+                >
+            </div>
+        </div>
+    </li>
+
     <!-- Nav Item - Product Collapse Menu -->
     <li class="nav-item">
         <a
@@ -120,6 +144,36 @@
                 >
                 <a class="collapse-item" href="{{ route('products.create') }}"
                     >Tambah Produk Baru</a
+                >
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Category Collapse Menu -->
+    <li class="nav-item">
+        <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseCategory"
+            aria-expanded="true"
+            aria-controls="collapseCategory"
+        >
+            <i class="fas fa-fw fa-tag"></i>
+            <span>Category</span>
+        </a>
+        <div
+            id="collapseCategory"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+        >
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('categories.index') }}"
+                    >List Kategori</a
+                >
+                <a class="collapse-item" href="{{ route('categories.create') }}"
+                    >Tambah Kategori Baru</a
                 >
             </div>
         </div>

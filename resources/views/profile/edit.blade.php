@@ -30,7 +30,7 @@
                             class="img-prof rounded-circle"
                             alt="Photo"
                         />
-                        <input type="file" name="photo" />
+                        <input type="file" name="photo" class="form-control" />
                         @error('photo')
                         <div class="alert alert-danger">
                             {{ $message }}

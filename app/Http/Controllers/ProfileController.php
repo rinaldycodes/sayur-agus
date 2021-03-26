@@ -7,6 +7,8 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Hash;
+use File;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -54,6 +56,7 @@ class ProfileController extends Controller
         
         $profile = Profile::where('user_id', Auth::user()->id)->first();
         $profile->user_id = Auth::user()->id;
+        Storage::disk('public')->delete($profile->photo);
         $profile->photo = $request->file('photo')->store('images', 'public');
         $profile->address = $request->address;
         $profile->no_telp = $request->no_telp;

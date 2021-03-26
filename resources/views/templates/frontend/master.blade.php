@@ -110,7 +110,14 @@
             <h2 class="fs-3">Get In Touch</h2>
             <ul>
               <li>Bekasi, Indonesia</li>
-              <li>0882-1234-4567</li>
+              <li>
+                <a
+                  class="text-center text-white"
+                  href="https://api.whatsapp.com/send/?phone=6288299862278&text=Halo+Kita%21+Belanja%21+Saya+ingin+belanja%2C+gimana+caranya%3F&app_absent=0"
+                >
+                  0882-9986-2278
+                </a>
+              </li>
             </ul>
           </div>
           <div class="col-md-6 mb-5">

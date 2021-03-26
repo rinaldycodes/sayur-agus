@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Slider;
 
 class PageController extends Controller
 {
     public function home() {
         $products = Product::with('galleries')->inRandomOrder()->limit(9)->latest()->get();
+        $sliders = Slider::latest()->get();
 
-        return view('home', compact('products'));
+        return view('home', compact('products', 'sliders'));
     }
 
     public function product() {

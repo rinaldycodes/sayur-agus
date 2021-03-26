@@ -16,6 +16,17 @@
         <title>Hello, {{ Auth::user()->name}}!</title>
     </head>
     <body>
+        @if (session('message'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {{ session("message") }}.
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+            ></button>
+        </div>
+        @endif
         <div class="container" style="padding-top: 5cm">
             <div class="row justify-content-center text-center">
                 <div class="col-6">

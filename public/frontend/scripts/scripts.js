@@ -1,10 +1,10 @@
-const plz = (elem) => document.querySelector(elem);
-const shipping = plz("#location");
-const subtotal = plz("#subtotal");
-const totalInput = plz("#totalInput");
-const totalText = plz("#totalText");
-const ongkirText = plz("#ongkirText");
-const ongkirInput = plz("#ongkirInput");
+const el = (elem) => document.querySelector(elem);
+const shipping = el("#location");
+const subtotal = el("#subtotal");
+const totalInput = el("#totalInput");
+const totalText = el("#totalText");
+const ongkirText = el("#ongkirText");
+const ongkirInput = el("#ongkirInput");
 
 function myShipping(obj) {
     var priceOngkir = obj.options[obj.selectedIndex].getAttribute("data-price");
@@ -15,3 +15,25 @@ function myShipping(obj) {
     totalInput.value = parseFloat(subtotal.value) + parseFloat(priceOngkir);
     totalText.innerHTML = "Rp." + new Intl.NumberFormat("ID").format(Total);
 }
+
+// DETAIL PRODUCT
+const min = el("#min");
+const plus = el("#plus");
+const qty = el("#qty");
+const messageQty = el("#messageQty");
+
+min.onclick = () => {
+    if (qty.value == 1) {
+        messageQty.innerHTML = "Minimal 1 item";
+    } else {
+        --qty.value;
+    }
+};
+
+plus.onclick = () => {
+    if (qty.value == 10) {
+        messageQty.innerHTML = "Maksimal 10 item";
+    } else {
+        ++qty.value;
+    }
+};

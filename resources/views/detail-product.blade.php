@@ -69,6 +69,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
                             }}"" class="d-block w-100" alt="Online Shop" />
                         </div>
                         @endforeach
@@ -130,22 +139,29 @@
                         </p>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="qty">Pilih Jumlah </label>
-                        <select name="qty" id="" class="form-control">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
+                    <div class="mb-3 qty">
+                        <button
+                            type="button"
+                            id="min"
+                            class="btn btn-sm btn-light text-success fw-bold fs-3"
+                        >
+                            -
+                        </button>
+                        <input
+                            name="qty"
+                            type="text"
+                            id="qty"
+                            readonly
+                            value="1"
+                        />
+                        <button
+                            type="button"
+                            id="plus"
+                            class="btn btn-sm btn-light text-success fw-bold fs-3"
+                        >
+                            +
+                        </button>
+                        <p id="messageQty" class="text-danger"></p>
                     </div>
 
                     <div class="mb-3">
@@ -160,11 +176,11 @@
                     <div class="buttons mb-3 mt-3">
                         <a
                             href="{{ url('/') }}"
-                            class="btn btn-sm btn-outline-success"
+                            class="btn btn-md btn-outline-success"
                             ><i class="bi bi-arrow-left-circle-fill"></i>
                             Back</a
                         >
-                        <button type="submit" class="btn btn-sm btn-success">
+                        <button type="submit" class="btn btn-md btn-success">
                             <i class="bi bi-basket"></i> Add to Cart
                         </button>
                     </div>
