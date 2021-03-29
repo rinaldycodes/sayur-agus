@@ -4,7 +4,7 @@
 <section class="jumbotron mb-3 bg-success">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6 mb-5 ">
+            <div class="col mb-5 ">
                 <!-- Carousel -->
                 <div
                     id="carouselExampleIndicators"
@@ -64,15 +64,7 @@
                 </div>
                 <!-- /Carousel -->
             </div>
-            <div class="col-md-6 text-white d-md-block d-none">
-                <!-- <h1 class="fs-2 text-center">{{ config("app.name") }}</h1> -->
-                <p class="lead">
-                    Mau belanja tapi males keluar? <br />
-                    <b class="fs-1">{{ config("app.name") }}</b> solusinya!
-                    pilih barangnya, pesan , dan bayar. Pesanan kamu, kami
-                    antarkan sampai rumah.
-                </p>
-            </div>
+            
         </div>
     </div>
 

@@ -20,7 +20,15 @@ function myShipping(obj) {
 const min = el("#min");
 const plus = el("#plus");
 const qty = el("#qty");
+const qtyContainer = el("#qtyContainer");
+const btnAddToCart = el("#add-to-cart");
 const messageQty = el("#messageQty");
+
+if (qty.max == 0) {
+    qtyContainer.style.display = "none";
+    messageQty.innerHTML = "Stok tidak tersedia";
+    btnAddToCart.disabled = true;
+}
 
 min.onclick = () => {
     if (qty.value == 1) {
@@ -31,8 +39,8 @@ min.onclick = () => {
 };
 
 plus.onclick = () => {
-    if (qty.value == 10) {
-        messageQty.innerHTML = "Maksimal 10 item";
+    if (qty.value == qty.max) {
+        messageQty.innerHTML = "Sudah mencapai maksimal stok!";
     } else {
         ++qty.value;
     }

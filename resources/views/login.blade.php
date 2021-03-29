@@ -74,11 +74,22 @@
                         >
                             Login
                         </button>
-                        <a
-                            href="{{ url('/register') }}"
-                            class="w-100 btn btn-lg btn-outline-success"
-                            >Register</a
-                        >
+                        <div class="links d-flex justify-content-between">
+                            <a
+                                href="{{ url('/register') }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Register
+                            </a>
+                            <a
+                                href="{{ route('password.forgot') }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Lupa Password?
+                            </a>
+                        </div>
                         <hr />
                         <p class="text-center">
                             <a href="{{ url('/') }}">Home</a>

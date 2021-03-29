@@ -14,6 +14,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\User\DashboardUserController;
 use App\Http\Controllers\User\PesananKamuController;
 use App\Http\Controllers\User\PembayaranController;
@@ -69,6 +70,7 @@ Route::get('/register', [LoginController::class, 'register']);
 Route::post('/process-register', [LoginController::class, 'processRegister']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+
 ///////////////////// CART CONTROLLER ///////////////////////////////
 Route::post('/add-item/{slug}', [CartController::class, 'add_item']);
 Route::get('store-cart/{slug}', [CartController::class, 'store']);
@@ -87,6 +89,21 @@ Route::get('/shipping/checkout', [ShippingController::class, 'checkout'])
     ->name('cetak');
 ///////////////////// SHIPPING CONTROLLER ///////////////////////////////
 
+
+///////////////////////////// GUEST AREA //////////////////////////////////
+Route::middleware('guest')->group( function() {
+    Route::get('/forgot-password',[ResetPasswordController::class, 'forgotPassword'])
+    ->name('password.forgot');
+    Route::post('/forgot-password',[ResetPasswordController::class, 'send'])
+    ->name('password.send');
+    Route::get('/reset-password/{token}',[ResetPasswordController::class, 'resetPassword'])
+    ->name('password.reset');
+    Route::post('/reset-password',[ResetPasswordController::class, 'updatePassword'])
+    ->name('password.update');
+});
+///////////////////////////// GUEST AREA //////////////////////////////////
+
+
 /////////////////// AUTH AREA //////////////////////////////////
 Route::middleware('auth.basic')
     ->group( function() {
@@ -96,6 +113,8 @@ Route::middleware('auth.basic')
 
     });
 /////////////////////////// END AUTH AREA //////////////////////////////////
+
+
 
 ////////////////////////// USER AREA //////////////////////////////////
 Route::prefix('user')

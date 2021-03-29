@@ -104,6 +104,12 @@ section .detail-product {
     width: 7vw;
 }
 
+#cart .qty input {
+    border: none;
+    text-align: center;
+    width: 7vw;
+}
+
 #from-category img {
     margin: auto;
     width: 100%;

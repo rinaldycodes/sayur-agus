@@ -74,9 +74,10 @@ class ProductController extends Controller
         return redirect()->route('galleries.show', $product->slug)->with('message', 'Berhasil Menyimpan Data dan silahkan upload gambar!');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $product = Product::where('slug', $slug)->with('category')->firstOrFail();
+        return view('admin.products.show', compact('product'));
     }
 
  

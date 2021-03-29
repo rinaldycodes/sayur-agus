@@ -73,7 +73,7 @@
                 <label for="description">Deskripsi</label>
                 <textarea
                     name="description"
-                    id="description"
+                    id="editor1"
                     cols="15"
                     rows="5"
                     class="form-control @error('stock') is-invalid @enderror"

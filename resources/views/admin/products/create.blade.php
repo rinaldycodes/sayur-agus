@@ -17,6 +17,7 @@
                     type="text"
                     name="name"
                     class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Contoh: Tomat 1kg"
                     value="{{ old('name') }}"
                 />
                 @error('name')
@@ -31,6 +32,7 @@
                     maxlength="10"
                     class="form-control @error('price') is-invalid @enderror"
                     value="{{ old('price') }}"
+                    placeholder="Contoh: 10.000"
                 />
                 @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -41,6 +43,7 @@
                 <input
                     type="text"
                     name="stock"
+                    placeholder="Contoh: 10"
                     value="{{ old('stock') }}"
                     class="form-control @error('stock') is-invalid @enderror"
                 />
@@ -69,7 +72,7 @@
                 <label for="description">Deskripsi</label>
                 <textarea
                     name="description"
-                    id="description"
+                    id="editor1"
                     cols="15"
                     rows="5"
                     class="form-control @error('stock') is-invalid @enderror"

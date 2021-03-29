@@ -29,7 +29,6 @@
                     <tr>
                         <th>User</th>
                         <th>Role</th>
-                        <th>Created Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,7 +36,6 @@
                     <tr>
                         <th>User</th>
                         <th>Role</th>
-                        <th>Created Date</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -54,7 +52,6 @@
                             <small>{{ $user->role }}</small>
                         </td>
 
-                        <td>{{$user->created_at}}</td>
                         <td>
                             <div class="row">
                                 <div class="col-sm mb-1">

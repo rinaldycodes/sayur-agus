@@ -120,28 +120,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-middle" >
+                                <td class="align-middle" colspan="2">
                                     <p class="fs-5" >Payment</p>
                                 </td>
-                                <td class="align-middle text-center " colspan="2"> 
-                                    @if( $transaction->payment == 'bni')
-                                    <h6 class="fw-bold">BNI</h6>
-                                    <small class="text-muted">Pembayaran via bank bca</small> <br>
-                                    <small class="text-muted fw-bold">AGUS <br>
-                                        NO.REK: 123-456-789
-                                    </small>
-
-                                    @elseif ( $transaction->payment == 'bca')
-                                    <h6 class="fw-bold">BCA</h6>
-                                    <small class="text-muted">Pembayaran via bank bca</small> <br>
-                                    <small class="text-muted fw-bold">AGUS <br>
-                                        NO.REK: 123-456-789
-                                    </small>
-
-                                    @else
-                                    <h6 class="fw-bold">COD</h6>
-                                    <small class="text-muted">Bayar ditempat anda</small>
-                                    @endif
+                                <td class="align-middle text-end "> 
+                                    <h6 class="fw-bold">{{ $transaction->payment->payment }}</h6>
+                                    <b class="text-muted">{{ $transaction->payment->name }}</b> <br />
+                                    <p>{{ $transaction->payment->no_rek }}</p>
                                 </td>
                             </tr>
                         </table>

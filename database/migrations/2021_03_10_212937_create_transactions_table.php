@@ -21,6 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->text('address')->nullable();
             $table->text('message')->nullable();
             $table->integer('payment_id')->nullable();
+            $table->integer('ongkir')->nullable();
             $table->integer('transaction_total')->nullable();
             $table->string('transaction_status')->nullable(); // IN_CART , PENDNG  , SUCCESS, CANCEL, FAILED
             $table->timestamps();

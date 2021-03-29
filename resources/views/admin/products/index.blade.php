@@ -30,7 +30,6 @@
                         <th>Produk</th>
                         <th>Harga</th>
                         <th>Galeri</th>
-                        <th>Created Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -39,7 +38,6 @@
                         <th>Produk</th>
                         <th>Harga</th>
                         <th>Galeri</th>
-                        <th>Created Date</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -61,15 +59,13 @@
                             <a
                                 href="{{ route('galleries.show', $product->slug) }}"
                             >
-                                <i class="fas fa-image fs-1"></i> Galeri <br />
+                                <i class="fas fa-image fs-1"></i>
                                 {{ $product->galleries->count() }}
-                                <span>Foto</span>
                             </a>
                         </td>
-                        <td>{{$product->created_at}}</td>
                         <td>
-                            <div class="row">
-                                <div class="col-sm mb-1">
+                            <div class="row justify-content-between">
+                                <div class="col mb-1">
                                     <a
                                         href="{{route('products.edit', $product->slug)}}"
                                         data-toggle="tooltip"
@@ -79,7 +75,17 @@
                                         ><i class="fas fa-edit"></i
                                     ></a>
                                 </div>
-                                <div class="col-sm mb-1">
+                                <div class="col mb-1">
+                                    <a
+                                        href="{{route('products.show', $product->slug)}}"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Show"
+                                        class="btn btn-sm btn-info"
+                                        ><i class="fas fa-eye"></i
+                                    ></a>
+                                </div>
+                                <div class="col mb-1">
                                     <form
                                         action="{{route('products.destroy', $product->id)}}"
                                         method="post"

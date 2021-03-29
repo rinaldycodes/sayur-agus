@@ -84,7 +84,10 @@
             </li>
             @endguest
             <li class="nav-item">
-              <a href="./cart.html" class="nav-link d-md-block d-lg-none" title="keranjang belanja"><i class="bi bi-basket"></i> <small>Cart</small></a>
+              <a href="{{ url('/cart') }}" class="nav-link d-md-block d-lg-none" title="keranjang belanja">
+                <i class="bi bi-basket"></i> <small>Cart</small>
+                <small class="badge bg-danger">{{Cart::count()}}</small>
+              </a>
             </li>
           </ul>
         </div>

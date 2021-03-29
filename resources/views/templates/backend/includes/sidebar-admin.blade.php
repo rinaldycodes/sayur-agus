@@ -251,7 +251,6 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card">
-        <h6>WEB VERSION</h6>
-        <p class="text-center mb-2">Tyaga SHOP v1</p>
+        <p class="text-center mb-2">v1</p>
     </div>
 </ul>

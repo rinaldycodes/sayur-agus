@@ -11,6 +11,10 @@
 
 <!-- Page level plugins -->
 <script src="{{URL::to('backend/sb-admin-2')}}/vendor/chart.js/Chart.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("editor1");
+</script>
 
 <!-- Page level custom scripts -->
 <script src="{{URL::to('frontend/scripts/scripts.js')}}"></script>

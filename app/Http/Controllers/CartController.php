@@ -16,9 +16,6 @@ class CartController extends Controller
    
     public function add_item(Request $request, $slug) {
         $product = Product::where('slug', $slug)->firstOrFail();
-        // Add some items in your Controller.
-        // Cart::add('192ao12', 'Product 1', 1, 9.99);
-        // Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
 
         Cart::add([
             'id' => $product->id,
@@ -26,9 +23,14 @@ class CartController extends Controller
             'qty' => $request->qty,
             'price' => $product->price,
             "options" => [
-                'img' => $img = $product->galleries->first() ? $product->galleries->first()->img : ''
-                ],
+                'img' => $img = $product->galleries->first() ? $product->galleries->first()->img : '',
+                'stock' => $product->stock,
+            ],
         ]);
+
+        // UPDATE STOCK
+        $product->stock -= $request->qty;
+        $product->save();
 
         return back()->with('message', 'Berhasil Menambah Cart');
     }
@@ -39,6 +41,11 @@ class CartController extends Controller
     }
 
     public function remove(Request $request, $rowId) {
+        $item = Cart::content()[$rowId];
+        $product = Product::findOrFail($item->id);
+        $product->stock += $item->qty;
+        $product->save();
+        
         Cart::remove($rowId);
 
         return redirect('/cart')->with('message', 'Berhasil Menghapus Cart');

@@ -44,19 +44,38 @@
                                 action="{{ url('/update-item', $row->rowId) }}"
                             >
                                 <td class="align-middle text-end">
-                                    <input
-                                        type="number"
-                                        value="{{ $row->qty }}"
-                                        min="1"
-                                        max="10"
-                                        name="{{ $row->rowId }}"
-                                        style="width: 50px"
-                                    />
+                                    <div
+                                        class="mb-3 qty d-flex"
+                                        id="qtyContainer"
+                                    >
+                                        <button
+                                            type="button"
+                                            id="min"
+                                            class="btn btn-sm text-success fw-bold fs-3"
+                                        >
+                                            -
+                                        </button>
+                                        <input
+                                            name="{{ $row->rowId }}"
+                                            type="text"
+                                            id="qty"
+                                            readonly
+                                            value="{{ $row->qty }}"
+                                            max="{{ $row->options->stock }}"
+                                        />
+                                        <button
+                                            type="button"
+                                            id="plus"
+                                            class="btn btn-sm text-success fw-bold fs-3"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </td>
                                 <td>
                                     <a
                                         href="{{ url('/remove-item', $row->rowId) }}"
-                                        class="btn btn-sm btn-light"
+                                        class="btn btn-sm"
                                         title="hapus"
                                         ><i
                                             class="bi bi-x-circle-fill text-danger fs-5"
@@ -64,7 +83,7 @@
                                     ></a>
                                     <button
                                         type="submit"
-                                        class="btn btn-sm btn-light"
+                                        class="btn btn-sm"
                                         title="update"
                                     >
                                         <i
@@ -98,8 +117,8 @@
                                 <a
                                     href="{{ url('/destroy-cart') }}"
                                     class="btn btn-sm btn-danger"
-                                    ><i class="bi bi-trash"></i> RESET</a
-                                >
+                                    ><i class="bi bi-trash"></i>
+                                </a>
                             </td>
                             @endif
                         </tr>

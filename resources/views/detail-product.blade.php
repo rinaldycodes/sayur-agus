@@ -68,16 +68,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
                             }}"" class="d-block w-100" alt="Online Shop" />
                         </div>
                         @endforeach
@@ -139,7 +129,7 @@
                         </p>
                     </div>
 
-                    <div class="mb-3 qty">
+                    <div class="mb-3 qty" id="qtyContainer">
                         <button
                             type="button"
                             id="min"
@@ -153,6 +143,7 @@
                             id="qty"
                             readonly
                             value="1"
+                            max="{{ $product->stock }}"
                         />
                         <button
                             type="button"
@@ -161,26 +152,27 @@
                         >
                             +
                         </button>
-                        <p id="messageQty" class="text-danger"></p>
                     </div>
+                    <p id="messageQty" class="text-danger"></p>
 
                     <div class="mb-3">
                         <label for="desc" class="text-muted">Description</label>
-                        <p>
-                            {{ $product->description }}
-                            <a href="#">Lihat Selengkapnya</a>
-                        </p>
+                        <p>{!! $product->description !!}</p>
                     </div>
 
                     <!-- BUTTONS -->
-                    <div class="buttons mb-3 mt-3">
+                    <div class="buttons my-5">
                         <a
                             href="{{ url('/') }}"
                             class="btn btn-md btn-outline-success"
                             ><i class="bi bi-arrow-left-circle-fill"></i>
                             Back</a
                         >
-                        <button type="submit" class="btn btn-md btn-success">
+                        <button
+                            id="add-to-cart"
+                            type="submit"
+                            class="btn btn-md btn-success"
+                        >
                             <i class="bi bi-basket"></i> Add to Cart
                         </button>
                     </div>
